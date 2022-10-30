@@ -1,0 +1,26 @@
+@import "../../variables/variables.scss";
+
+.communityComponentContainer {
+  height: 75vh !important;
+}
+
+.main-container {
+  //   height: 70vh !important;
+  background: transparent linear-gradient(180deg, #861626 0%, #f26522 100%) 0%
+    0% no-repeat padding-box;
+  box-shadow: 10px 20px 30px #f2652257;
+}
+
+.child-container {
+  height: 43vh !important;
+  width: 48rem;
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  //   height: 30vh !important;
+  //   background: var($color-white) 0% 0% no-repeat padding-box;
+  //   background: #ffffff 0% 0% no-repeat padding-box;
+}

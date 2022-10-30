@@ -1,0 +1,15 @@
+@import "../../variables/variables.scss";
+
+.homebanner-container {
+  max-width: 100%;
+  height: 72vh;
+  //   object-fit: cover;
+
+  background-image: url("../../../../images/homeBannerImage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  //   background: position 50%;
+  opacity: 1;
+}

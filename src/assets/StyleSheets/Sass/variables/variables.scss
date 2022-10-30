@@ -1,0 +1,19 @@
+//
+$primary-color: #841424;
+$secondary-color: #f26522;
+$secondary-color-1: #f47439;
+$color-white: #ffffff;
+
+// BOOTSTRAP CSS OVERIDE
+$font-size-base: 1rem;
+$font-size-lg: $font-size-base * 1.7;
+
+$font-size-sm: 0.5rem !important    ;
+
+// media break points
+$media-desktop-xl: "only screen and (min-width : 2560px)";
+$media-desktop: "only screen and (min-width : 1024px)";
+$media-tablet: "only screen and (max-width : 768px)";
+$media-mobile: "only screen and (max-width : 600px)";
+$media-mobile-sm: "only screen and (max-width : 480px)";
+$media-mobile-xsm: "only screen and (max-width : 390px)";

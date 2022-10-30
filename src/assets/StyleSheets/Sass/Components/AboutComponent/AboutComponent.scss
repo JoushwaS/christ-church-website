@@ -1,0 +1,73 @@
+@import "../../variables/variables.scss";
+.aboutComponentContainer {
+  //
+}
+.overlay-img {
+  //   padding: 0px 40px;
+  position: absolute;
+  //   width: 467px;
+  //   width: 100% !important;
+  //   height: 80vh;
+  object-fit: cover;
+  height: 50vh !important;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  //   height: max-content;
+  //   object-fit: none;
+  //   object-position: center center; // or 50% 50%
+  z-index: 2;
+  img {
+    max-width: 85%;
+    max-height: 75%;
+  }
+}
+
+.sq {
+  z-index: 1;
+  width: 46% !important;
+  border: 13px solid transparent;
+  border-image: linear-gradient(180deg, #861626, #f26522);
+  border-image-slice: 1;
+  height: 30vh !important;
+  border-radius: 10px;
+}
+
+@media #{$media-desktop} {
+  .overlay-img {
+    margin-left: 5rem;
+    margin-top: 2rem;
+    height: 50vh !important;
+  }
+}
+
+@media #{$media-desktop-xl} {
+  .overlay-img {
+    margin-left: 4rem;
+    margin-top: 2rem;
+    height: 40vh !important;
+  }
+}
+@media #{$media-tablet} {
+  .overlay-img {
+    height: 52vh !important;
+    margin-left: 8rem;
+    margin-top: 2rem;
+  }
+}
+@media #{$media-mobile-sm} {
+  .overlay-img {
+    margin-left: 4rem;
+    margin-top: 3rem;
+    height: 48vh !important;
+  }
+}
+
+@media #{$media-mobile-xsm} {
+  .overlay-img {
+    margin-left: 1rem;
+    margin-top: 4rem;
+    height: 40vh !important;
+  }
+}
