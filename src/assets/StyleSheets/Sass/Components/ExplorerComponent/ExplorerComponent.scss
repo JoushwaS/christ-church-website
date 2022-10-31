@@ -1,0 +1,27 @@
+@import "../../variables/variables.scss";
+
+.explorerComponentContainer {
+}
+
+.explorerItem {
+  width: 20rem;
+  height: 25rem;
+  box-shadow: 10px 20px 30px #00000029;
+  border-radius: 10px;
+  opacity: 1;
+  img {
+    max-width: 50%;
+    max-height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    // object-fit: none;
+    // object-position: center center; // or 50% 50%
+  }
+}
+
+@media #{$media-mobile-xsm} {
+  .explorerItem {
+    height: 28rem;
+  }
+}
