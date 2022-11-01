@@ -7,8 +7,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { BsInstagram } from "react-icons/bs";
 import { FiFacebook, FiYoutube, FiTwitter } from "react-icons/fi";
 import appLogo from "../../assets/images/logo.jpeg";
-import Collapse from "react-bootstrap/Collapse";
-import Button from "react-bootstrap/Button";
+import { Container, Navbar, Nav } from "react-bootstrap";
 
 // function Header() {
 //   const headerRoutes = [
@@ -100,9 +99,6 @@ import Button from "react-bootstrap/Button";
 // }
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const handleNavCollapse = () => {
-    setOpen(!open);
-  };
 
   const headerRoutes = [
     {
@@ -138,13 +134,10 @@ const Header = () => {
       link: "/contact-us",
     },
   ];
-  useEffect(() => {
-    // if (open == true) {
-    //   setOpen(false);
-    // }
-    return () => {};
-  }, []);
-
+  const handleNavCollapse = (e) => {
+    // e.preventDefault();
+    setOpen(!open);
+  };
   return (
     // <header>
     //   <div className="">
@@ -220,50 +213,84 @@ const Header = () => {
     //     </div>
     //   </div>
     // </header>
-    <nav className=" bg-white text-black navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-xl px-8">
-        <a className="navbar-brand" href="#">
+    // breakpoint
+    // <nav className=" bg-white text-black navbar navbar-expand-lg navbar-light bg-light">
+    //   <div className="container-xl px-8">
+    //     <a className="navbar-brand" href="/">
+    //
+    //     </a>
+    //     <button
+    //       className="navbar-toggler"
+    //       type="button"
+    //       data-bs-toggle="collapse"
+    //       data-bs-target="#navbarSupportedContent"
+    //       aria-controls="navbarSupportedContent"
+    //       aria-expanded="false"
+    //       aria-label="Toggle navigation"
+    //     >
+    //       <span class="navbar-toggler-icon"></span>
+    //     </button>
+    //     <div
+    //       className={`collapse navbar-collapse ${open ? " show" : ""} `}
+    //       id="navbarSupportedContent"
+    //     >
+    //       <ul className="navbar-nav me-auto d-flex  ">
+    //         {headerRoutes.map((item) => {
+    //           return (
+    //             <li className="nav-item px-sm-1 px-lg-1 px-xl-4 px-4 fw-semibold fs-5 text-sm-center text-md-center text-center ">
+    //               <a className="nav-link " aria-current="page" href={item.link}>
+    //                 {item.name}
+    //               </a>
+    //             </li>
+    //           );
+    //         })}
+    //         <li className="nav-item px-sm-2 px-lg-2 px-3">
+    //           <a
+    //             className="header-btn text-white fw-semibold fs-6 text-center px-4 fw-semibold rounded nav-link "
+    //             aria-current="page"
+    //             href={"/donate"}
+    //           >
+    //             Donate{" "}
+    //           </a>
+    //         </li>
+    //       </ul>
+    //     </div>
+    //   </div>
+    // </nav>
+    <Navbar expanded={open} bg="light" expand="lg">
+      <Container large className="px-8">
+        <Navbar.Brand>
+          {" "}
           <img src={appLogo} className="img-logo " alt="app logo" />
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          onClick={handleNavCollapse}
-          // data-bs-toggle="collapse"
-          // data-bs-target="#navbarSupportedContent"
-          // aria-controls="navbarSupportedContent"
-          // aria-expanded="false"
-          // aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div
-          className={`${open ? "collapse" : ""} navbar-collapse`}
-          id="navbarSupportedContent"
-        >
-          <ul className="navbar-nav me-auto d-flex  ">
+        </Navbar.Brand>
+        <Navbar.Toggle
+          aria-controls="navbarScroll"
+          onClick={() => setOpen(open ? false : "expanded")}
+        />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav className="me-auto my-2 my-lg-0" navbarScroll>
             {headerRoutes.map((item) => {
               return (
                 <li className="nav-item px-sm-1 px-lg-1 px-xl-4 px-4 fw-semibold fs-5 text-sm-center text-md-center text-center ">
-                  <a className="nav-link " aria-current="page" href={item.link}>
+                  <Link to={item.link} className="nav-link">
                     {item.name}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
             <li className="nav-item px-sm-2 px-lg-2 px-3">
-              <a
+              <Link
                 className="header-btn text-white fw-semibold fs-6 text-center px-4 fw-semibold rounded nav-link "
                 aria-current="page"
-                href={"/donate"}
+                to={"/donate"}
               >
                 Donate{" "}
-              </a>
+              </Link>
             </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 

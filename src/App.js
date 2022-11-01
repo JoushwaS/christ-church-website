@@ -2,6 +2,8 @@ import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 // IMPORTING REDUX PROVIDER
+import "bootstrap/dist/js/bootstrap.bundle";
+
 import { Provider } from "react-redux";
 // GETTING STORE TO PROVIDE TO REDUX PROVIDER
 import store from "./redux/store.js";
