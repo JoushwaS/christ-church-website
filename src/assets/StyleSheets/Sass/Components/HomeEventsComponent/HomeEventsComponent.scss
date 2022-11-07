@@ -1,0 +1,101 @@
+@import "../../variables/variables.scss";
+
+.headingHomeEvents {
+}
+.headingHomeEvents::before {
+  padding-bottom: 2px;
+  display: inline-block;
+  content: "";
+  border-top: 0.6rem solid $primary-color;
+  width: 4rem;
+  border-radius: 10px;
+  margin: -0.5rem 1rem;
+  transform: translateY(-1rem);
+}
+
+.eventHomeBgComponent {
+  position: relative;
+  // position: relative;
+  // height: 93vh;
+  height: 75vh;
+  width: 100%;
+  img {
+    max-width: 100% !important;
+    height: 67vh;
+  }
+}
+.eventHomeBgComponentDetail {
+  position: absolute;
+  max-width: 100% !important;
+  padding: 5px;
+  bottom: 5.8rem !important;
+  height: 26% !important;
+  background: rgba(255, 255, 255, 0.01);
+  box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.eventsListHomeContainer {
+  height: 75vh;
+  width: 100%;
+  gap: 4.1rem !important;
+}
+
+@media #{$media-desktop-xxl} {
+  .eventHomeBgComponent {
+    height: 60vh;
+  }
+  .eventHomeBgComponentDetail {
+    bottom: 7rem !important;
+  }
+}
+
+@media #{$media-desktop} {
+  .eventHomeBgComponentDetail {
+    bottom: 16rem !important;
+  }
+}
+
+@media #{$media-tablet} {
+  .eventHomeBgComponent {
+    height: 100vh !important;
+  }
+  .eventHomeBgComponentDetail {
+    bottom: 0.6rem !important;
+  }
+}
+@media #{$media-mobile-sm} {
+  .eventsListHomeContainer {
+    height: 95vh;
+  }
+  .eventHomeBgComponent {
+    width: 95% !important;
+    height: 100 !important;
+  }
+  .eventHomeBgComponent img {
+    max-width: 100% !important;
+    height: 100% !important;
+  }
+  .eventHomeBgComponentDetail {
+    width: 100% !important;
+    // bottom: 4rem !important;
+  }
+}
+
+@media #{$media-mobile-xsm} {
+  .eventsListHomeContainer {
+    height: 100vh;
+  }
+  .eventHomeBgComponent {
+    width: 95% !important;
+    height: 60vh !important;
+  }
+  .eventHomeBgComponent img {
+    max-width: 100% !important;
+    height: 100% !important;
+  }
+  .eventHomeBgComponentDetail {
+    // bottom: 17.1rem !important;
+  }
+}

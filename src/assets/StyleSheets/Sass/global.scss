@@ -5,6 +5,7 @@
 @import "../Sass//Components/AboutComponent/AboutComponent.scss";
 @import "../Sass//Components/CommunityComponent/CommunityComponent.scss";
 @import "../Sass//Components/ExplorerComponent/ExplorerComponent.scss";
+@import "../Sass//Components/HomeEventsComponent/HomeEventsComponent.scss";
 
 @import "../Sass/variables/variables.scss";
 
@@ -56,6 +57,9 @@ a {
 
 .primary-border {
   border: 1px solid $primary-color;
+}
+.primary-border-bottom {
+  border-bottom: 1px solid $primary-color;
 }
 .secondary-border {
   border: 1px solid $secondary-color !important;
