@@ -10,11 +10,11 @@ function EventHomeItemBg() {
       //   backgroundRepeat: "no-repeat",
       //   backgroundImage: `url(${EventHomeBgImg})`,
       // }}
-      className="eventHomeBgComponent  rounded"
+      className="eventHomeBgComponent  rounded-ex"
     >
       <img
         alt="event home background "
-        className=" rounded"
+        className=" rounded-ex"
         src={EventHomeBgImg}
       />
       <div className="eventHomeBgComponentDetail p-4 text-white d-flex gap-3 rounded flex-column">

@@ -4,7 +4,7 @@ import EventsListHome from "../EventsListHome/EventsListHome";
 // import EventHomeBgImg from "../../assets/images/Rectangle 19.png";
 function HomeEventsComponent() {
   return (
-    <div className="homeEventsComponentContainer container-xl">
+    <div className="homeEventsComponentContainer container-xl p-2">
       <div className="row">
         <div className="col-lg-12">
           <h2 className="fs-2 color-primary">Join Us</h2>
@@ -14,7 +14,7 @@ function HomeEventsComponent() {
         </div>
       </div>
       <div className="row">
-        <div className="col-lg-6 col-md-12 col-sm-12 col-xsm-12 p-2">
+        <div className="col-lg-6 col-md-12 col-sm-12 col-xsm-12 d-flex justify-content-center p-2">
           <EventHomeItemBg />
         </div>
         <div className="col-lg-6 col-md-12 col-sm-12 col-xsm-12 ">

@@ -1,0 +1,75 @@
+@import "../../variables/variables.scss";
+.homeSermonComponent {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+}
+.homesermon-container {
+  width: 83rem;
+  height: 45vh;
+  z-index: 1;
+  background: transparent linear-gradient(91deg, #861626 0%, #f26522 100%) 0% 0%
+    no-repeat padding-box;
+  padding: 4rem 7rem !important;
+}
+.homesermon-image {
+  width: 20rem;
+  left: 70rem;
+  bottom: -237.1rem;
+  position: absolute;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  z-index: 2;
+}
+.sermonButton {
+  color: white;
+  background-color: transparent;
+  transition: all 0.5s ease;
+
+  &:hover {
+    color: $primary-color;
+    background-color: white;
+  }
+}
+
+@media #{$media-desktop} {
+  .homesermon-image {
+    width: 18rem;
+    left: 37rem;
+    bottom: -286rem;
+    position: absolute;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    z-index: 2;
+  }
+}
+
+@media #{$media-desktop-xxl} {
+  .homesermon-image {
+    width: 20rem;
+    left: 88rem;
+    bottom: -260.1rem;
+    position: absolute;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    z-index: 2;
+  }
+}
+@media #{$media-desktop-xl} {
+  .homesermon-image {
+    width: 20rem;
+    left: 50rem;
+    bottom: -260.1rem;
+    position: absolute;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    z-index: 2;
+  }
+}
+@media #{$media-tablet} {
+}
+@media #{$media-mobile-sm} {
+}
+
+@media #{$media-mobile-xsm} {
+}
