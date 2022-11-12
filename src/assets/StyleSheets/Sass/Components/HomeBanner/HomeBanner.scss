@@ -56,7 +56,18 @@
 }
 @media #{$media-desktop} {
 }
+@media #{$media-mobile} {
+}
+
 @media #{$media-tablet} {
+  .homeBanner2-container {
+    max-width: 100%;
+    height: 70vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+  }
   .homeBanner2-container .homebanner-text-section {
     width: 100% !important;
     text-align: center;
@@ -70,7 +81,7 @@
     padding: 2rem;
   }
   .homeBanner2-container {
-    height: 80vh !important;
+    height: 92vh !important;
   }
 
   .video-section {

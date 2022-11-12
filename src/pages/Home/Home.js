@@ -6,6 +6,7 @@ import ExplorerComponent from "../../components/ExplorerComponent/ExplorerCompon
 import HomeBanner from "../../components/HomeBanner/HomeBanner";
 import HomeBanner2 from "../../components/HomeBanner2/HomeBanner2";
 import HomeEventsComponent from "../../components/HomeEventsComponent/HomeEventsComponent";
+import HomeRecentSermonComponent from "../../components/HomeRecentSermonComponent/HomeRecentSermonComponent";
 import HomeSermonComponent from "../../components/HomeSermonComponent/HomeSermonComponent";
 
 function Home() {
@@ -18,6 +19,7 @@ function Home() {
       <HomeEventsComponent />
       <HomeBanner2 />
       <HomeSermonComponent />
+      <HomeRecentSermonComponent />
     </div>
   );
 }

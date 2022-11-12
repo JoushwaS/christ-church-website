@@ -2,20 +2,25 @@
 .homeSermonComponent {
   height: 90vh;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 .homesermon-container {
-  width: 83rem;
+  width: 70rem;
   height: 45vh;
+  border-radius: 50rem !important;
   z-index: 1;
   background: transparent linear-gradient(91deg, #861626 0%, #f26522 100%) 0% 0%
     no-repeat padding-box;
   padding: 4rem 7rem !important;
 }
+.img-pastor {
+  width: 16rem !important;
+}
 .homesermon-image {
   width: 20rem;
-  left: 70rem;
-  bottom: -237.1rem;
+  //   left: 70rem;
+  // bottom: -236.1rem;
   position: absolute;
   max-width: 100% !important;
   max-height: 100% !important;
@@ -25,51 +30,103 @@
   color: white;
   background-color: transparent;
   transition: all 0.5s ease;
-
+  width: 12rem;
+  height: 4rem;
   &:hover {
     color: $primary-color;
     background-color: white;
   }
 }
 
-@media #{$media-desktop} {
+@media #{$media-desktop-xxl} {
   .homesermon-image {
-    width: 18rem;
-    left: 37rem;
-    bottom: -286rem;
+    width: 20rem;
+    // left: 88rem;
+    // bottom: -233.1rem;
     position: absolute;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    z-index: 2;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .homesermon-container {
+    width: 75rem;
+    /* height: 35vh; */
+    border-radius: 50rem !important;
+    z-index: 1;
+    padding: 6rem 10rem !important;
+  }
+  .homesermon-image {
+    width: 20rem;
+    // left: 50rem;
+    bottom: -260.1rem;
+    // position: absolute;
     max-width: 100% !important;
     max-height: 100% !important;
     z-index: 2;
   }
 }
 
-@media #{$media-desktop-xxl} {
-  .homesermon-image {
-    width: 20rem;
-    left: 88rem;
-    bottom: -260.1rem;
-    position: absolute;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    z-index: 2;
+@media #{$media-desktop} {
+  .homesermon-container {
+    width: 75rem;
+    height: 35vh;
+    border-radius: 50rem !important;
+    z-index: 1;
+    padding: 6rem 10rem !important;
   }
-}
-@media #{$media-desktop-xl} {
   .homesermon-image {
     width: 20rem;
-    left: 50rem;
-    bottom: -260.1rem;
-    position: absolute;
+    bottom: -283.1rem;
     max-width: 100% !important;
     max-height: 100% !important;
     z-index: 2;
   }
 }
 @media #{$media-tablet} {
+  .homeSermonComponent {
+    // height: 90vh;
+    display: block;
+    justify-content: none;
+    align-items: none;
+  }
+  .homesermon-container {
+    width: 47.8rem;
+    height: 35vh;
+    border-radius: 0rem !important;
+    padding: 4rem 0.5rem !important;
+  }
+  .img-pastor {
+    display: none;
+  }
 }
 @media #{$media-mobile-sm} {
+  .homesermon-container {
+    width: 24.6rem;
+    height: 46vh;
+    border-radius: 0rem !important;
+    padding: 4rem 0.5rem !important;
+  }
+  .sermonButton {
+    width: 10rem;
+  }
+  .homesermon-image {
+    display: none;
+  }
 }
 
 @media #{$media-mobile-xsm} {
+  .sermonButton {
+    width: 10rem;
+  }
+  .homesermon-container {
+    // width: 29rem;
+    // height: 35vh;
+    // border-radius: 0rem !important;
+    // padding: 4rem 0.5rem !important ;
+  }
+  .homesermon-image {
+    display: none;
+  }
 }
