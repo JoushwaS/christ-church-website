@@ -7,7 +7,7 @@
 }
 .homesermon-container {
   width: 70rem;
-  height: 45vh;
+  height: 50vh;
   border-radius: 50rem !important;
   z-index: 1;
   background: transparent linear-gradient(91deg, #861626 0%, #f26522 100%) 0% 0%
@@ -37,6 +37,42 @@
     background-color: white;
   }
 }
+
+
+// RECENT SERMONS CCCSS
+
+
+.home-recent-sermon-component{
+
+  // height:100vh
+}
+
+.sermon-item-info{
+
+  position: absolute;
+    max-width: 100% !important;
+
+      height: 8rem;
+    padding: 5px;
+    bottom: -4.7rem !important;
+    background: rgba(255, 255, 255, 0.01);
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+   
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.sermon-item-container{
+    width: 15rem;
+      height: 30vh;
+        position: relative;
+    // background-color: #861626;
+    img{
+
+      // max-height: 100% !important;
+    }
+}
+
+
 
 @media #{$media-desktop-xxl} {
   .homesermon-image {
@@ -74,7 +110,7 @@
     height: 35vh;
     border-radius: 50rem !important;
     z-index: 1;
-    padding: 6rem 10rem !important;
+    padding: 3rem 10rem !important;
   }
   .homesermon-image {
     width: 20rem;
@@ -102,8 +138,19 @@
   }
 }
 @media #{$media-mobile-sm} {
+.homeSermonComponent{
+  height: 52vh !important;
+}
+  .sermon-item-container {
+height:35vh !important;
+  }
+
+    .sermon-item-info{
+
+          bottom: 2.3rem !important;
+    }
   .homesermon-container {
-    width: 24.6rem;
+    width: 25.7rem;
     height: 46vh;
     border-radius: 0rem !important;
     padding: 4rem 0.5rem !important;
