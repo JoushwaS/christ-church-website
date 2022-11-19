@@ -6,7 +6,7 @@
   align-items: center;
 }
 .homesermon-container {
-  width: 70rem;
+max-width: 100% !important;
   height: 50vh;
   border-radius: 50rem !important;
   z-index: 1;
@@ -52,9 +52,9 @@
   position: absolute;
     max-width: 100% !important;
 
-      height: 8rem;
-    padding: 5px;
-    bottom: -4.7rem !important;
+        height: 6rem;
+          padding: 4px;
+    bottom: 0rem !important;
     background: rgba(255, 255, 255, 0.01);
     box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
    
@@ -63,7 +63,7 @@
 }
 .sermon-item-container{
     width: 15rem;
-      height: 30vh;
+      // height: 30vh;
         position: relative;
     // background-color: #861626;
     img{
@@ -128,7 +128,7 @@
     align-items: none;
   }
   .homesermon-container {
-    width: 47.8rem;
+  max-width: 100% !important;
     height: 35vh;
     border-radius: 0rem !important;
     padding: 4rem 0.5rem !important;
@@ -138,22 +138,23 @@
   }
 }
 @media #{$media-mobile-sm} {
+
 .homeSermonComponent{
   height: 52vh !important;
 }
   .sermon-item-container {
-height:35vh !important;
+height:40vh !important;
   }
 
     .sermon-item-info{
 
-          bottom: 2.3rem !important;
+          bottom:0.6rem !important;
     }
   .homesermon-container {
-    width: 25.7rem;
+max-width: 100% !important;
     height: 46vh;
     border-radius: 0rem !important;
-    padding: 4rem 0.5rem !important;
+      padding: 3rem 0.5rem !important;
   }
   .sermonButton {
     width: 10rem;

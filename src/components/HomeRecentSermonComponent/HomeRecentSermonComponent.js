@@ -95,15 +95,20 @@ function HomeRecentSermonComponent() {
             return <HomeSermonItem props={item} />;
           })}
         </div>
-        <div className=" d-flex h-50 p-3 flex-row-reverse">
-          <Link className="color-primary" to={"#"}>
-            <span>See All</span>
-            <span>
-              <BiRightArrowAlt />
-            </span>
-          </Link>
+      </div>
+      <div className="row">
+        <div className="col-lg-12">
+          <div className=" d-flex h-50 p-3 flex-row-reverse">
+            <Link className="color-primary" to={"#"}>
+              <span>See All</span>
+              <span>
+                <BiRightArrowAlt />
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
+
       <div className="row">
         <div className="col-lg-12">
           <h2 className="fs-2 color-primary">Blog</h2>
@@ -119,13 +124,18 @@ function HomeRecentSermonComponent() {
           })}
           {/* </div> */}
         </div>
-        <div className=" d-flex h-50 p-3 flex-row-reverse">
-          <Link className="color-primary" to={"#"}>
-            <span>See All</span>
-            <span>
-              <BiRightArrowAlt />
-            </span>
-          </Link>
+      </div>
+
+      <div className="row">
+        <div className="col-lg-12">
+          <div className=" d-flex h-50 p-3 flex-row-reverse">
+            <Link className="color-primary" to={"#"}>
+              <span>See All</span>
+              <span>
+                <BiRightArrowAlt />
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

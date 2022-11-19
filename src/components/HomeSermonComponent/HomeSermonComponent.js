@@ -9,7 +9,7 @@ export const SermonButton = (props) => {
 };
 function HomeSermonComponent() {
   return (
-    <div className="homeSermonComponent py-5 text-white ">
+    <div className="homeSermonComponent py-2 text-white ">
       <div className="homesermon-container d-flex flex-lg-row flex-sm-column ">
         <div className="d-flex justify-content-center  m-0">
           <div className="d-flex flex-column ">

@@ -21,7 +21,7 @@ function Home() {
       <HomeBanner2 />
       <HomeSermonComponent />
       <HomeRecentSermonComponent />
-      {/* <HomePartnersSection /> */}
+      <HomePartnersSection />
     </div>
   );
 }
