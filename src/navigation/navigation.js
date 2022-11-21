@@ -15,9 +15,74 @@ import Banner from "../components/Banner/Banner";
 import HomeBanner from "../components/HomeBanner/HomeBanner";
 import AboutComponent from "../components/AboutComponent/AboutComponent";
 export default function Navigation() {
+  const routesList = [
+    {
+      path: "/",
+      mainComponent: <Home />,
+      bannerComponent: <HomeBanner />,
+    },
+    {
+      path: "/about",
+      mainComponent: <About />,
+      bannerComponent: <Banner />,
+    },
+    {
+      path: "/events",
+      mainComponent: <Events />,
+      bannerComponent: <Banner />,
+    },
+
+    {
+      path: "/sacrament",
+      mainComponent: <Sacrament />,
+      bannerComponent: <Banner />,
+    },
+
+    {
+      path: "/ministeries",
+      mainComponent: <Ministeries />,
+      bannerComponent: <Banner />,
+    },
+    {
+      path: "/donate",
+      mainComponent: "",
+      bannerComponent: <Banner />,
+    },
+    {
+      path: "/blogs",
+      mainComponent: <Blogs />,
+      bannerComponent: <Banner />,
+    },
+    {
+      path: "/contact-us",
+      mainComponent: <Contact />,
+      bannerComponent: <Banner />,
+    },
+    {
+      path: "/sermons",
+      mainComponent: <Sermons />,
+      bannerComponent: <Banner />,
+    },
+  ];
   return (
     <Routes>
-      <Route
+      {routesList.map((item) => {
+        return (
+          <Route
+            path={item.path}
+            element={
+              //   <Suspense fallback={<FullScreenLoader />}>
+              <Layout>
+                {item.bannerComponent !== "" && item.bannerComponent}
+                {item.mainComponent}
+              </Layout>
+              //   </Suspense>
+            }
+          />
+        );
+      })}
+
+      {/* <Route
         path="/"
         element={
           //   <Suspense fallback={<FullScreenLoader />}>
@@ -106,7 +171,7 @@ export default function Navigation() {
           </Layout>
           //   </Suspense>
         }
-      />
+      /> */}
     </Routes>
   );
 }

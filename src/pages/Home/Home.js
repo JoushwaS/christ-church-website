@@ -13,11 +13,11 @@ import HomeSermonComponent from "../../components/HomeSermonComponent/HomeSermon
 function Home() {
   return (
     <div>
-      <HomeBanner />
+      {/* <HomeBanner /> */}
       <AboutComponent />
       <CommunityComponent />
       <ExplorerComponent />
-      <HomeEventsComponent />
+      <HomeEventsComponent props={{ bannerHeading: true }} />
       <HomeBanner2 />
       <HomeSermonComponent />
       <HomeRecentSermonComponent />

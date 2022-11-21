@@ -1,0 +1,65 @@
+.contact-us-container {
+}
+
+.contact-us-component {
+  display: flex;
+  width: 60rem;
+  height: 60vh;
+  /* UI Properties */
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 10px 20px 30px #00000029;
+  border-radius: 2rem;
+  opacity: 1;
+}
+
+.contact-section {
+  width: 50% !important;
+  display: flex;
+  padding: 2rem !important;
+  justify-content: center;
+}
+
+.submitBtn {
+  width: 7rem;
+  height: 6vh;
+  border-radius: 36px;
+  opacity: 1;
+}
+
+.btn-disabled {
+  background: grey 0% 0% no-repeat padding-box;
+}
+.btn-enabled {
+  background: #861626 0% 0% no-repeat padding-box;
+}
+
+@media #{$media-desktop-xxl} {
+}
+@media #{$media-desktop} {
+}
+@media #{$media-mobile} {
+  .contact-section {
+    width: 100% !important;
+    //padding: 0rem !important;
+  }
+}
+
+@media #{$media-tablet} {
+}
+@media #{$media-mobile-sm} {
+  .contact-section {
+    width: 100% !important;
+    //padding: 0rem !important;
+  }
+}
+
+@media #{$media-mobile-xsm} {
+  .contact-section {
+    width: 100% !important;
+    //padding: 0rem !important;
+  }
+  .contact-us-component {
+    height: 140vh !important;
+    flex-direction: column;
+  }
+}
