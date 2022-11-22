@@ -1,5 +1,7 @@
 @import "../Sass/Components/Header/Header.scss";
 @import "../Sass/Pages/contactUs.scss";
+@import "../Sass/Pages/blogs.scss";
+@import "../Sass/Pages/sermons.scss";
 
 @import "../Sass//Components/Footer/Footer.scss";
 @import "../Sass//Components/Banner/Banner.scss";
@@ -71,6 +73,16 @@ input.mdc-text-field__input:focus {
 }
 a {
   text-decoration: none !important;
+}
+.text-underline-primary {
+  text-decoration: underline !important;
+  text-decoration-color: $primary-color !important;
+  text-decoration-thickness: 3px;
+}
+.text-underline-thick {
+  text-decoration: none;
+  border-bottom: 3px solid $primary-color;
+  // border-radius: 10px !important;
 }
 .rounded-ex {
   border-radius: 1rem !important;

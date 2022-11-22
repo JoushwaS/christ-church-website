@@ -1,0 +1,24 @@
+.sermon-item {
+  width: 16rem;
+  height: 46vh;
+  /* UI Properties */
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 10px 20px 30px #00000029;
+  border-radius: 10px;
+  opacity: 1;
+}
+.sermon-thumbnail-container {
+  img {
+    height: 16vh !important;
+    z-index: 1;
+  }
+  .play-pause-button-sermon {
+    cursor: pointer;
+    width: 8rem !important;
+    position: absolute;
+    z-index: 2;
+  }
+  span {
+    line-height: normal !important;
+  }
+}
