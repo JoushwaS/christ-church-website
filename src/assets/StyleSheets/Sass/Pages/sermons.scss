@@ -1,5 +1,5 @@
 .sermon-item {
-  width: 16rem;
+  width: 17rem;
   height: 46vh;
   /* UI Properties */
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -20,5 +20,26 @@
   }
   span {
     line-height: normal !important;
+  }
+}
+
+@media #{$media-desktop-xxl} {
+}
+@media #{$media-desktop} {
+}
+@media #{$media-mobile} {
+}
+
+@media #{$media-tablet} {
+}
+@media #{$media-mobile-sm} {
+  .sermons-list-container {
+    gap: 2rem !important;
+  }
+}
+
+@media #{$media-mobile-xsm} {
+  .sermons-list-container {
+    gap: 2rem !important;
   }
 }

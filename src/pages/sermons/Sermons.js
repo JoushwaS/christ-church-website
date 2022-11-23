@@ -8,28 +8,58 @@ function Sermons() {
 
   const videoSermonList = [
     {
-      title: "Christ Church Food Bank",
+      title: "Christ Church Sermon Video",
       thumbnail: SermonPageBgImg,
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
       url: "#",
     },
     {
-      title: "Christ Church Food Bank",
+      title: "Christ Church Sermon Video",
       thumbnail: SermonPageBgImg,
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
       url: "#",
     },
     {
-      title: "Christ Church Food Bank",
+      title: "Christ Church Sermon Video",
       thumbnail: SermonPageBgImg,
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
       url: "#",
     },
     {
-      title: "Christ Church Food Bank",
+      title: "Christ Church Sermon Video",
+      thumbnail: SermonPageBgImg,
+      description:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
+      url: "#",
+    },
+  ];
+  const audioSermonList = [
+    {
+      title: "Christ Church Sermon Audio",
+      thumbnail: SermonPageBgImg,
+      description:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
+      url: "#",
+    },
+    {
+      title: "Christ Church Sermon Audio",
+      thumbnail: SermonPageBgImg,
+      description:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
+      url: "#",
+    },
+    {
+      title: "Christ Church Sermon Audio",
+      thumbnail: SermonPageBgImg,
+      description:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
+      url: "#",
+    },
+    {
+      title: "Christ Church Sermon Audio",
       thumbnail: SermonPageBgImg,
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
@@ -47,7 +77,7 @@ function Sermons() {
                   setsermonType(item);
                 }}
                 className={`px-4 fw-semibold ${
-                  sermonType == item ? "text-underline-thick" : ""
+                  sermonType === item ? "text-underline-thick" : ""
                 }`}
               >
                 {item}
@@ -58,14 +88,22 @@ function Sermons() {
       </div>
 
       <div className="row">
-        <div className=" d-flex justify-content-center   flex-wrap">
-          {videoSermonList.map((item) => {
-            return (
-              <div className="col-lg-3">
-                <SermonItemComponent props={item} />
-              </div>
-            );
-          })}
+        <div className="sermons-list-container d-flex justify-content-center  flex-wrap">
+          {sermonType === "Video"
+            ? videoSermonList.map((item) => {
+                return (
+                  <div className="col-lg-3">
+                    <SermonItemComponent props={item} />
+                  </div>
+                );
+              })
+            : audioSermonList.map((item) => {
+                return (
+                  <div className="col-lg-3">
+                    <SermonItemComponent props={item} />
+                  </div>
+                );
+              })}
         </div>
       </div>
     </div>

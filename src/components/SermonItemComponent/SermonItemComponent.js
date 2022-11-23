@@ -15,7 +15,9 @@ function SermonItemComponent({ props }) {
         />
         <img src={props.thumbnail} className="img-fluid rounded" />
       </div>
-      <p className="color-primary fw-semibold text-center">{props.title}</p>
+      <p className="color-primary  fw-semibold text-center fs-md ">
+        {props.title}
+      </p>
       <span className="text-center fs-xsm">
         {truncateString(props.description, 200)}
       </span>
