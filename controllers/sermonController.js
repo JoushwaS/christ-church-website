@@ -63,27 +63,40 @@ module.exports = {
   },
   updateSermon: async (req, res) => {
     try {
-      const { eventName, description, eventDate, eventVenue } = req.body;
-      // const file = await req.file;
-
       let data = { ...req.body };
       Object.keys(data).forEach(
         (k) => data[k] == null || (data[k] == "" && delete data[k])
       );
-      console.log("updated data event", data);
+      console.log("updated data semon", data);
 
-      const event = await Event.findOneAndUpdate(
-        { _id: req.params.eventId },
+      if (data.sermonType == "video") {
+        data.videoUrl = videoUrl;
+      } else if (data.sermonType == "audio") {
+        const audioPath = await cloudinaryUpload(req.files["audio"][0]?.path);
+        console.log("audioPath", audioPath);
+        data.audioUrl = audioPath;
+      }
+
+      const imageUrl = await cloudinaryUpload(req.files["thumbnail"][0]?.path);
+
+      console.log("imageUrl>>", imageUrl);
+
+      if (imageUrl) {
+        data.thumbnail = imageUrl;
+      }
+
+      const sermon = await Sermon.findOneAndUpdate(
+        { _id: req.params.sermonId },
         data,
         {
           new: true,
         }
       );
 
-      res.status(200).json({
+      return res.status(200).json({
         status: 1,
         message: "Sermon Updated Successfully",
-        data: { event },
+        data: { sermon },
       });
     } catch (error) {
       console.log(error);
@@ -96,7 +109,7 @@ module.exports = {
   },
   deleteSermon: async (req, res) => {
     try {
-      await Event.findOneAndDelete({ _id: req.params.eventId });
+      await Sermon.findOneAndDelete({ _id: req.params.sermonId });
 
       res.status(200).json({
         status: 1,
@@ -120,6 +133,61 @@ module.exports = {
         status: 1,
         message: "Sermons Fetched  Successfully",
         data: { Sermons },
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        status: 0,
+        message: "Fetch Sermons  Failed!",
+        error: { error },
+      });
+    }
+  },
+  getSermon: async (req, res) => {
+    try {
+      const sermon = await Sermon.findOne({ _id: req.params.sermonId });
+      // console.log(Sermons);
+      return res.status(200).json({
+        status: 1,
+        message: "Sermons Fetched  Successfully",
+        data: { sermon },
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        status: 0,
+        message: "Fetch Sermons  Failed!",
+        error: { error },
+      });
+    }
+  },
+  getSermon: async (req, res) => {
+    try {
+      const sermon = await Sermon.findOne({ _id: req.params.sermonId });
+      // console.log(Sermons);
+      return res.status(200).json({
+        status: 1,
+        message: "Sermons Fetched  Successfully",
+        data: { sermon },
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        status: 0,
+        message: "Fetch Sermons  Failed!",
+        error: { error },
+      });
+    }
+  },
+  getSermonType: async (req, res) => {
+    try {
+      const { sermonType } = req.body;
+      const sermon = await Sermon.find({ sermonType: sermonType });
+      // console.log(Sermons);
+      return res.status(200).json({
+        status: 1,
+        message: "Sermons Fetched  Successfully",
+        data: { sermon },
       });
     } catch (error) {
       console.log(error);

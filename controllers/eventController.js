@@ -45,9 +45,13 @@ module.exports = {
   },
   updateEvent: async (req, res) => {
     try {
-      const { eventName, description, eventDate, eventVenue } = req.body;
-      // const file = await req.file;
+      if (req.file) {
+        const imageUrl = await cloudinaryUpload(req.file.path);
 
+        if (imageUrl) {
+          data.image = imageUrl;
+        }
+      }
       let data = { ...req.body };
       Object.keys(data).forEach(
         (k) => data[k] == null || (data[k] == "" && delete data[k])
@@ -110,6 +114,24 @@ module.exports = {
       return res.status(400).json({
         status: 0,
         message: "Fetch Events  Failed!",
+        error: { error },
+      });
+    }
+  },
+  getEvent: async (req, res) => {
+    try {
+      const Event = await Event.findOne({ _id: req.params.eventId });
+      // console.log(Events);
+      res.status(200).json({
+        status: 1,
+        message: "Event Fetched  Successfully",
+        data: { Event },
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        status: 0,
+        message: "Fetch Event  Failed!",
         error: { error },
       });
     }
