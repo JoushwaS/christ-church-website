@@ -1,5 +1,7 @@
 const Content = require("../models/Content");
 const { cloudinaryUpload } = require("../middlewares/cloudinaryUpload.js");
+const { isEmailValid } = require("../utils/emailRegex");
+
 module.exports = {
   /**
    * create service
@@ -29,7 +31,16 @@ module.exports = {
       }
 
       newContent.location = location;
-      newContent.email = email;
+
+      if (isEmailValid(email)) {
+        newContent.email = email;
+      } else {
+        return res.status(403).json({
+          status: 0,
+          message: "Add Content  Failed! Please Enter a Valid Email",
+        });
+      }
+
       newContent.missionStatement = missionStatement;
       newContent.facebookLink = facebookLink;
       newContent.twitterLink = twitterLink;
@@ -73,7 +84,14 @@ module.exports = {
 
         data.logo = imageUrl;
       }
-
+      if (isEmailValid(data.email)) {
+        data.email = email;
+      } else {
+        return res.status(403).json({
+          status: 0,
+          message: "Update Content  Failed! Please Enter a Valid Email",
+        });
+      }
       const content = await Content.findOneAndUpdate({}, data, {
         new: true,
       });

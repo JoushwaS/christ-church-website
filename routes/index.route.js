@@ -8,6 +8,7 @@ const overseapartnerRoutes = require("./overseapartnerRoutes");
 const sacramentRoutes = require("./sacramentRoutes");
 const contactUsRoutes = require("./contactUsRoutes");
 const contentRoutes = require("./contentRoutes");
+const blogRoutes = require("./blogRoutes");
 
 const router = express.Router();
 
@@ -39,6 +40,10 @@ const defaultRoutes = [
   {
     path: "/content",
     route: contentRoutes,
+  },
+  {
+    path: "/blog",
+    route: blogRoutes,
   },
 ];
 

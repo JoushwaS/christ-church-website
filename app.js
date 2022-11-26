@@ -17,11 +17,20 @@ const PORT = process.env.PORT || 8000;
  * and return info about db name
  */
 // connect();
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
-	mongoDbConfig.MongoDB().catch((err) => console.log(err));
+  mongoDbConfig.MongoDB().catch((err) => console.log(err));
 } else {
-	mongoDbConfig.MongoDBTest().catch((err) => console.log(err));
+  mongoDbConfig.MongoDBTest().catch((err) => console.log(err));
 }
 
 app.use(express.json());
@@ -30,16 +39,17 @@ app.use("/api/v1/", v1Routes);
 /*
  * CORS policy configuration
  */
-app.use(
-	cors({
-		origin: process.env.CLIENT_URL || "*", // allow CORS
-		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-		credentials: true, // allow session cookie from browser to pass through
-	})
-);
+
+const corsOptions = {
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+};
+app.use(cors(corsOptions));
 
 app.use("/uploads", express.static("uploads"));
 
 app.listen(PORT, () => {
-	console.log("Server up on Port ", PORT);
+  console.log("Server up on Port ", PORT);
 });

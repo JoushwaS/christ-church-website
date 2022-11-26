@@ -120,12 +120,12 @@ module.exports = {
   },
   getEvent: async (req, res) => {
     try {
-      const Event = await Event.findOne({ _id: req.params.eventId });
+      const event = await Event.findOne({ _id: req.params.eventId });
       // console.log(Events);
       res.status(200).json({
         status: 1,
         message: "Event Fetched  Successfully",
-        data: { Event },
+        data: { event },
       });
     } catch (error) {
       console.log(error);
