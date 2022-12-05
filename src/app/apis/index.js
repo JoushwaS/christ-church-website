@@ -1,13 +1,13 @@
 import axios from "axios";
-
-const API_URL = "https://no-square.herokuapp.com/";
+import { BASE_URL } from "../../apis/constant";
+// const BASE_URL = "https://no-square.herokuapp.com/";
 
 // Destructure axios
 const { get, post, put, delete: del } = axios;
 
 //GET REQUEST
 const getRequest = async (url, token, queries) => {
-  const api = `${API_URL}${url}`;
+  const api = `${BASE_URL}${url}`;
 
   const config = {
     headers: token
@@ -26,7 +26,7 @@ const getRequest = async (url, token, queries) => {
 
 //POST REQUEST
 const postRequest = async (url, data, token) => {
-  const api = `${API_URL}${url}`;
+  const api = `${BASE_URL}${url}`;
 
   const config = {
     headers: token
@@ -45,7 +45,7 @@ const postRequest = async (url, data, token) => {
 
 // PUT REQUEST
 const putRequest = async (url, data, token) => {
-  const api = `${API_URL}${url}`;
+  const api = `${BASE_URL}${url}`;
 
   const config = {
     headers: token
@@ -66,7 +66,7 @@ const putRequest = async (url, data, token) => {
 
 // DELETE REQUEST
 const deleteRequest = async (url, token) => {
-  const api = `${API_URL}${url}`;
+  const api = `${BASE_URL}${url}`;
 
   const config = {
     headers: token
