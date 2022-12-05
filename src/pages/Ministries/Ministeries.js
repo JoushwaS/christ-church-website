@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ColumnItem from "../../components/ColumnItem/ColumnItem";
 import WomenMinistryImg from "../../assets/images/WomenMinistryImg.jpeg";
 import youthMinistryImg from "../../assets/images/youthMinistryImg.jpeg";
@@ -6,7 +6,17 @@ import childrenMinistryImg from "../../assets/images/childrenMinistryImg.jpeg";
 import musicMinistryImg from "../../assets/images/musicMinistryImg.jpeg";
 import educationMinistry from "../../assets/images/educationMinistry.jpeg";
 import foodMinistryImg from "../../assets/images/foodMinistryImg.jpeg";
+import { useSelector, useDispatch } from "react-redux";
+import { GET_MINISTERIES_LIST_ACTION } from "../../redux/actions/actions";
+
 function Ministeries() {
+  const dispatch = useDispatch();
+  const { ministeries } = useSelector((state) => state.reducers);
+  console.log(ministeries);
+  useEffect(() => {
+    dispatch(GET_MINISTERIES_LIST_ACTION());
+  }, []);
+
   const MinisteriesData = [
     {
       minsitryName: "Women Ministry",
@@ -54,7 +64,7 @@ function Ministeries() {
   return (
     <div className="container-xl p-4">
       {" "}
-      {MinisteriesData.map((item, index) => {
+      {ministeries?.map((item, index) => {
         const ministryItem = { ...item, index };
         return <ColumnItem props={ministryItem} />;
       })}

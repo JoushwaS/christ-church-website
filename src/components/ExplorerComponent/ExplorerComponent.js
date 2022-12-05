@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ExplorerItem from "../ExplorerItem/ExplorerItem";
+
+import { useSelector, useDispatch } from "react-redux";
+import {
+  GET_EXPLORE_INFO_ALL_ACTION,
+  GET_EXPLORE_INFO_ACTION,
+} from "../../redux/actions/actions";
 import FoodBankIcon from "../../assets/images/icons8-hamper-100.png";
 import ProtectChildrenIcon from "../../assets/images/icons8-care-100.png";
 import ScholarshipIcon from "../../assets/images/Icon awesome-graduation-cap.svg";
@@ -7,44 +13,56 @@ import parishIcon from "../../assets/images/Icon map-church.svg";
 import donateIcon from "../../assets/images/Icon awesome-donate.svg";
 import volunterIcon from "../../assets/images/icons8-volunteering-100.png";
 function ExplorerComponent() {
-  const explorerItemsList = [
-    {
-      icon: FoodBankIcon,
-      cardHeading: "Christ Church Food Bank",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
-    },
-    {
-      icon: ProtectChildrenIcon,
-      cardHeading: "Protect Our Children",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
-    },
-    {
-      icon: ScholarshipIcon,
-      cardHeading: "Scholarships",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
-    },
-    {
-      icon: parishIcon,
-      cardHeading: "Our Parish",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
-    },
-    {
-      icon: donateIcon,
-      cardHeading: "Donate Online",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
-    },
-    {
-      icon: volunterIcon,
-      cardHeading: "Volunteering",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
-    },
-  ];
+  const dispatch = useDispatch();
+
+  const { exploreInfoList, exploreInfo } = useSelector(
+    (state) => state.reducers
+  );
+
+  // const explorerItemsList = [
+  //   {
+  //     icon: parishIcon,
+  //     cardHeading: "Our Parish",
+  //     description:
+  //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
+  //   },
+
+  //   {
+  //     icon: ProtectChildrenIcon,
+  //     cardHeading: "Protect Our Children",
+  //     description:
+  //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
+  //   },
+  //   {
+  //     icon: ScholarshipIcon,
+  //     cardHeading: "Scholarships",
+  //     description:
+  //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
+  //   },
+  //   {
+  //     icon: FoodBankIcon,
+  //     cardHeading: "Christ Church Food Bank",
+  //     description:
+  //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
+  //   },
+  //   {
+  //     icon: volunterIcon,
+  //     cardHeading: "Volunteering",
+  //     description:
+  //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
+  //   },
+  //   {
+  //     icon: donateIcon,
+  //     cardHeading: "Donate Online",
+  //     description:
+  //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.",
+  //   },
+  // ];
+
+  useEffect(() => {
+    dispatch(GET_EXPLORE_INFO_ALL_ACTION());
+  }, []);
+
   return (
     <div className="explorerComponentContainer container-lg px-5">
       <div className="row">
@@ -59,7 +77,7 @@ function ExplorerComponent() {
       </div>
       <div className="row">
         <div className="col-lg-12 d-flex justify-content-between flex-wrap pt-4">
-          {explorerItemsList.map((item) => {
+          {exploreInfoList?.map((item) => {
             return <ExplorerItem props={item} />;
           })}
         </div>

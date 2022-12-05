@@ -14,21 +14,21 @@ function CommunityComponent() {
               <div className="child-content">
                 <h3 className="">Our Groups</h3>
                 <h1 className=" fw-semibold display-5">
-                  <span className="color-secondary ">Join</span> a
-                  <span className="color-primary"> Community: </span>
+                  <span className="color-secondary ">Join</span> our
+                  <span className="color-primary"> Community </span>
                 </h1>
-                <h6 className="fs-6">
+                {/* <h6 className="fs-6">
                   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                   diam nonumy eirmod tempor invidunt ut labore et dolore magna
                   aliquyam erat, sed diam ptua. At vero eos et accusam et justo
                   duo dolores et ea rebum. Stet clita kasd gube.
-                </h6>
-                <h6 className="fs-6">
+                </h6> */}
+                {/* <h6 className="fs-6">
                   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                   diam nonumy eirmod tempor invidunt ut labore et dolore magna
                   aliquyam erat, sed diam ptua. At vero eos et accusam et justo
                   duo dolores et ea rebum. Stet clita kasd gube.
-                </h6>
+                </h6> */}
               </div>
             </div>
           </div>

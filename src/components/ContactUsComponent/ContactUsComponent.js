@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import appLogo from "../../assets/images/logo.png";
+// import appLogo from "../../assets/images/logo.png";
+import appLogo from "../../assets/images/applogo.png";
+
 import { FiFacebook, FiYoutube, FiTwitter } from "react-icons/fi";
 import { BsInstagram } from "react-icons/bs";
 import Checkbox from "@mui/material/Checkbox";

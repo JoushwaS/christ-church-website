@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function Donate() {
   return (
-    <div>Donate</div>
-  )
+    <div className="container-xl p-4">
+      <h1>Donate Us!</h1>
+    </div>
+  );
 }
 
-export default Donate
+export default Donate;

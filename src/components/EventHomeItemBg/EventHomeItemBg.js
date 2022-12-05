@@ -1,35 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import EventHomeBgImg from "../../assets/images/Rectangle19.png";
+import { useSelector, useDispatch } from "react-redux";
+import { formatDate } from "../../utils/helper";
 
 function EventHomeItemBg() {
+  const { events } = useSelector((state) => state.reducers);
+
+  const [eventInfo, seteventInfo] = useState({});
+  useEffect(() => {
+    if (events?.length !== 0) {
+      seteventInfo(events[0]);
+    }
+  }, [events]);
+
+  console.log("eventInfo", eventInfo);
+
   return (
-    <div
-      // style={{
-      //   backgroundPosition: "center",
-      //   // backgroundSize: "cover",
-      //   backgroundRepeat: "no-repeat",
-      //   backgroundImage: `url(${EventHomeBgImg})`,
-      // }}
-      className="eventHomeBgComponent  rounded-ex"
-    >
-      <img
-        alt="event home background "
-        className=" rounded-ex"
-        src={EventHomeBgImg}
-      />
-      <div className="eventHomeBgComponentDetail p-4 text-white d-flex gap-3 rounded flex-column">
-        {" "}
-        <h1 className="mb-0">Event Name </h1>
-        <p className=" fw-light mb-0">
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.
-        </p>
-        <div className="d-flex flex-row justify-content-between">
-          <p>Date:12/12/2022</p>
-          <p>Date:12/12/2022</p>
+    <Link to={"/event/" + eventInfo?._id}>
+      <div className="eventHomeBgComponent  rounded-ex">
+        <img
+          alt="event home background "
+          className=" rounded-ex"
+          src={eventInfo?.image}
+        />
+        <div className="eventHomeBgComponentDetail  text-white d-flex gap-3 rounded flex-column">
+          {" "}
+          <h1 className="mb-0">{eventInfo?.eventName} </h1>
+          <p className=" fw-light mb-0 ">{eventInfo?.description} </p>
+          <div className="d-flex flex-row justify-content-between">
+            <span className="">Date: {formatDate(eventInfo?.eventDate)}</span>
+            <span className="">Venue: {eventInfo?.eventVenue}</span>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

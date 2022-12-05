@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from "redux";
-import { configureStore } from "@reduxjs/toolkit";
+
 // THUNK --- ASYNC LIBRARY
 import thunk from "redux-thunk";
 

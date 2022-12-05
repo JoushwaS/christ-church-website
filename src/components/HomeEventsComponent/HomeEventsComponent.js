@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EventHomeItemBg from "../EventHomeItemBg/EventHomeItemBg";
 import EventsListHome from "../EventsListHome/EventsListHome";
+import { useSelector, useDispatch } from "react-redux";
+
+import { GET_EVENTS_LIST_ACTION } from "../../redux/actions/actions";
 // import EventHomeBgImg from "../../assets/images/Rectangle 19.png";
 function HomeEventsComponent({ props }) {
-  console.log(props);
+  const dispatch = useDispatch();
+  const { events } = useSelector((state) => state.reducers);
+  const [eventsList, seteventsList] = useState();
+
+  useEffect(() => {
+    dispatch(GET_EVENTS_LIST_ACTION());
+  }, []);
+
+  useEffect(() => {
+    if (events?.length !== 0) {
+      seteventsList(events);
+    }
+  }, [events]);
+
   return (
     <div className="homeEventsComponentContainer container-xl p-2">
       {props.bannerHeading && (
@@ -21,7 +37,7 @@ function HomeEventsComponent({ props }) {
           <EventHomeItemBg />
         </div>
         <div className="col-lg-6 col-md-12 col-sm-12 col-xsm-12 ">
-          <EventsListHome />
+          <EventsListHome props={eventsList} />
         </div>
       </div>
     </div>

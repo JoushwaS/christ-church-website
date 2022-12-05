@@ -26,8 +26,9 @@
 }
 .eventHomeBgComponentDetail {
   position: absolute;
+  font-size: 0.7rem !important;
   max-width: 100% !important;
-  padding: 5px;
+  // padding: 1rem !important;
   bottom: 0rem !important;
   height: 30vh !important;
   background: rgba(255, 255, 255, 0.01);
@@ -55,6 +56,7 @@
 
 @media #{$media-desktop} {
   .eventHomeBgComponentDetail {
+    padding: 0;
     bottom: 16rem !important;
   }
 }
@@ -68,21 +70,22 @@
   }
 }
 @media #{$media-mobile-sm} {
-
   .eventsListHomeContainer {
     height: 100vh;
   }
   .eventHomeBgComponent {
-max-width: 100% !important;
-  height: 65vh !important;
+    max-width: 100% !important;
+    height: 65vh !important;
   }
   .eventHomeBgComponent img {
     max-width: 100% !important;
     height: 100% !important;
   }
   .eventHomeBgComponentDetail {
+    padding: 0rem !important;
+    font-size: 0.8rem !important;
     width: 100% !important;
-        max-height:100% !important;
+    height: 45% !important;
     // bottom: 4rem !important;
   }
 }

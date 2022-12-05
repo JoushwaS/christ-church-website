@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HomeEventsComponent from "../../components/HomeEventsComponent/HomeEventsComponent";
 import HomeSermonItem from "../../components/HomeSermonItem/HomeSermonItem";
 

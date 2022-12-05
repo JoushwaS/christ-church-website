@@ -2,10 +2,10 @@
 
 .homebanner-container {
   max-width: 100% !important;
-  height: 50vh;
+  height: 70vh;
   //   object-fit: cover;
 
-  background-image: url("../../../../images/homeBannerImage.png");
+  background-image: url("../../../../homeBannerImg.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -81,7 +81,7 @@
     padding: 2rem;
   }
   .homeBanner2-container {
-    height: 92vh !important;
+    height: 100vh !important;
   }
 
   .video-section {
@@ -90,6 +90,10 @@
 }
 
 @media #{$media-mobile-xsm} {
+  .homebanner-container {
+    height: 50vh !important;
+  }
+
   .homeBanner2-container .homebanner-text-section {
     padding: 2rem;
     width: 100% !important;

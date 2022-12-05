@@ -1,11 +1,33 @@
-import React from "react";
-import appLogo from "../../assets/images/logo.jpeg";
+import React, { useEffect, useState } from "react";
+import appLogo from "../../assets/images/applogo.png";
 import { BsInstagram } from "react-icons/bs";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { Link } from "react-router-dom";
-
+import { Link, NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { FiFacebook, FiYoutube, FiTwitter } from "react-icons/fi";
 function Footer() {
+  const { content } = useSelector((state) => state.reducers);
+  console.log(content);
+
+  const socialMediaHandles = [
+    {
+      logo: <FiFacebook />,
+      link: content?.facebookLink,
+    },
+    {
+      logo: <FiYoutube />,
+      link: "https://www.youtube.com/@PatresYounus",
+    },
+    {
+      logo: <FiTwitter />,
+      link: content?.twitterLink,
+    },
+    {
+      logo: <BsInstagram />,
+      link: "www.instagram.com",
+    },
+  ];
+
   const footerRoutes1 = [
     {
       name: "Home",
@@ -113,16 +135,25 @@ function Footer() {
       <div className="row">
         <div className="col-md-3">
           <div className="d-flex justify-content-center">
-            <img src={appLogo} className="img-logo-sm" alt="app logo" />
+            <img src={appLogo} className="img-logo-lg" alt="app logo" />
           </div>
           <p className="fs-7 pt-3 pb-3 text-center">
             Pariatur sit voluptate amet commodo voluptate culpa culpa
             reprehenderit deserunt.{" "}
             <div className="pt-3 d-flex gap-4 justify-content-center">
-              <FiFacebook className="fs-5 color-primary   pointer" />
+              {socialMediaHandles.map((item) => {
+                return (
+                  <a href={item.link} target="_blank">
+                    <div className="fs-5 color-primary   pointer">
+                      {item.logo}
+                    </div>
+                  </a>
+                );
+              })}
+              {/* <FiFacebook className="fs-5 color-primary   pointer" />
               <BsInstagram className="fs-5 color-primary  " />{" "}
               <FiYoutube className="fs-5 color-primary " />{" "}
-              <FiTwitter className="fs-5 color-primary  " />
+              <FiTwitter className="fs-5 color-primary  " /> */}
             </div>
           </p>
         </div>

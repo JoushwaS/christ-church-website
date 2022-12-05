@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+// import {  } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import AboutBannerImg from "../../assets/images/Rectangle32.png";
 import SacramentPageBannerImg from "../../assets/images/SacramentPageBannerImg.png";
 import SermonPageBgImg from "../../assets/images/SermonPageBgImg.png";
@@ -7,10 +8,18 @@ import ContactPageBannerImg from "../../assets/images/ContactPageBannerImg.png";
 import BlogPageBannerImg from "../../assets/images/BlogPageBannerImg.png";
 function Banner() {
   let location = useLocation();
+  const { sermonType, sermonId, eventId, blogId, exploreChurchId } =
+    useParams();
+
   const [BannerPageText, setBannerPageText] = useState("");
   const [bannerImg, setbannerImg] = useState();
   const BannerPages = [
     { link: "/about", text: "About Us", bannerImg: AboutBannerImg },
+    {
+      link: "/explore-church",
+      text: "Explore Our Parish",
+      bannerImg: AboutBannerImg,
+    },
     {
       link: "/sacrament",
       text: "Sacrament",
@@ -23,6 +32,11 @@ function Banner() {
     },
     { link: "/ministeries", text: "Ministeries", bannerImg: AboutBannerImg },
     { link: "/sermons", text: "Sermons", bannerImg: SermonPageBgImg },
+    {
+      link: "/sermon",
+      text: "Sermons",
+      bannerImg: SermonPageBgImg,
+    },
     { link: "/blogs", text: "Blogs", bannerImg: BlogPageBannerImg },
     {
       link: "/contact-us",
@@ -32,19 +46,55 @@ function Banner() {
     {
       link: "/donate",
       text: "Donate ",
-      bannerImg: "",
+      bannerImg: ContactPageBannerImg,
     },
   ];
+
+  const getParamsBannerInfo = (sermonLink) => {
+    const result = BannerPages.filter((item) => item.link == sermonLink);
+
+    return result[0];
+  };
+
   const renderBannerInfo = () => {
     BannerPages.map((item) => {
       if (item.link === location.pathname) {
         setBannerPageText(item.text);
         setbannerImg(item.bannerImg);
+      } else if (
+        sermonType ||
+        sermonId ||
+        eventId ||
+        blogId ||
+        exploreChurchId
+      ) {
+        if (sermonType) {
+          const info = getParamsBannerInfo("/sermon");
+
+          setBannerPageText(info.text);
+          setbannerImg(info.bannerImg);
+        } else if (eventId) {
+          const info = getParamsBannerInfo("/events");
+
+          setBannerPageText(info.text);
+          setbannerImg(info.bannerImg);
+        } else if (blogId) {
+          const info = getParamsBannerInfo("/blogs");
+
+          setBannerPageText(info.text);
+          setbannerImg(info.bannerImg);
+        } else if (exploreChurchId) {
+          const info = getParamsBannerInfo("/explore-church");
+
+          setBannerPageText(info.text);
+          setbannerImg(info.bannerImg);
+        }
       }
     });
   };
 
   useEffect(() => {
+    console.log("location", location);
     renderBannerInfo();
   }, [location.pathname]);
 

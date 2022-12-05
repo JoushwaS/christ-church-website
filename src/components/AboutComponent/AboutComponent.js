@@ -1,6 +1,27 @@
-import React from "react";
-import AboutUsComponentImage from "../../assets/images/Rectangle 7.png";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import AboutUsComponentImage from "../../assets/images/churchImage.jpeg";
+import { GET_CONTENT_ACTION } from "../../redux/actions/actions";
+
 function AboutComponent() {
+  const dispatch = useDispatch();
+  const { content } = useSelector((state) => state.reducers);
+  const [aboutComponentInfo, setaboutComponentInfo] = useState();
+  // console.log("website content>>>", content);
+
+  useEffect(() => {
+    dispatch(GET_CONTENT_ACTION());
+  }, []);
+
+  useEffect(() => {
+    if (content) {
+      setaboutComponentInfo({
+        aboutUs: content?.aboutUs,
+        missionStatement: content?.missionStatement,
+      });
+    }
+  }, [content]);
+
   return (
     <div className=" py-2">
       <div className="container-xl  ">
@@ -15,7 +36,7 @@ function AboutComponent() {
           </div>
           <div className=" col-xxl-7 col-sm-12 col-lg-7 pb-4 pt-4 col-md-12 fw-light">
             {" "}
-            <h2 className="color-primary text-lg-start text-xl-start  text-md-center text-xsm-center">
+            {/* <h2 className="color-primary text-lg-start text-xl-start  text-md-center text-xsm-center">
               About <span className="color-secondary">Us:</span>{" "}
             </h2>
             <p>
@@ -25,18 +46,11 @@ function AboutComponent() {
               et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
               est Lorem ipsum dolor sit amet. m dolor sit amet, consetetur
               sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut la
-            </p>
+            </p> */}
             <h2 className="color-primary text-lg-start text-xl-start text-sm-center text-md-center">
               Our <span className="color-secondary">Mission:</span>{" "}
             </h2>
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam ptua. At vero eos et accusam et justo duo dolores
-              et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-              est Lorem ipsum dolor sit amet. m dolor sit amet, consetetur
-              sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut la
-            </p>
+            <p>{aboutComponentInfo?.missionStatement}</p>
           </div>
         </div>
       </div>

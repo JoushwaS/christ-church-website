@@ -14,6 +14,8 @@ import Donate from "../pages/Donate/Donate";
 import Banner from "../components/Banner/Banner";
 import HomeBanner from "../components/HomeBanner/HomeBanner";
 import AboutComponent from "../components/AboutComponent/AboutComponent";
+import ChildPage from "../pages/SermonPage/ChildPage";
+import ExploreChurchPage from "../pages/ExploreChurchPage/ExploreChurchPage";
 export default function Navigation() {
   const routesList = [
     {
@@ -45,8 +47,8 @@ export default function Navigation() {
     },
     {
       path: "/donate",
-      mainComponent: "",
-      bannerComponent: <Banner />,
+      mainComponent: <Donate />,
+      bannerComponent: "",
     },
     {
       path: "/blogs",
@@ -61,6 +63,26 @@ export default function Navigation() {
     {
       path: "/sermons",
       mainComponent: <Sermons />,
+      bannerComponent: <Banner />,
+    },
+    {
+      path: "/sermon/:sermonType/:sermonId",
+      mainComponent: <ChildPage />,
+      bannerComponent: <Banner />,
+    },
+    {
+      path: "/event/:eventId",
+      mainComponent: <ChildPage />,
+      bannerComponent: <Banner />,
+    },
+    {
+      path: "/blog/:blogId",
+      mainComponent: <ChildPage />,
+      bannerComponent: <Banner />,
+    },
+    {
+      path: "/explore-church/:exploreChurchId",
+      mainComponent: <ExploreChurchPage />,
       bannerComponent: <Banner />,
     },
   ];

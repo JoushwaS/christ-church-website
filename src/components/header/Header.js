@@ -6,7 +6,7 @@ import { GrLocation } from "react-icons/gr";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsInstagram } from "react-icons/bs";
 import { FiFacebook, FiYoutube, FiTwitter } from "react-icons/fi";
-import appLogo from "../../assets/images/logo.jpeg";
+import appLogo from "../../assets/images/applogo.png";
 import { Container, Navbar, Nav } from "react-bootstrap";
 
 // function Header() {
@@ -259,10 +259,13 @@ const Header = () => {
     // </nav>
     <Navbar expanded={open} bg="light" expand="lg">
       <Container large className="px-8">
-        <Navbar.Brand>
-          {" "}
-          <img src={appLogo} className="img-logo " alt="app logo" />
-        </Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand>
+            {" "}
+            <img src={appLogo} className="img-logo" alt="app logo" />
+          </Navbar.Brand>
+        </Link>
+
         <Navbar.Toggle
           aria-controls="navbarScroll"
           onClick={() => setOpen(open ? false : "expanded")}
@@ -278,7 +281,7 @@ const Header = () => {
                 </li>
               );
             })}
-            <li className="nav-item px-sm-2 px-lg-2 px-3">
+            {/* <li className="nav-item px-sm-2 px-lg-2 px-3">
               <Link
                 className="header-btn text-white fw-semibold fs-6 text-center px-4 fw-semibold rounded nav-link "
                 aria-current="page"
@@ -286,7 +289,7 @@ const Header = () => {
               >
                 Donate{" "}
               </Link>
-            </li>
+            </li> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 
-import { truncateString } from "../../utils/helper";
+import { truncateString, checkDescriptionLength } from "../../utils/helper";
 function ColumnItem({ props }) {
   const [seeMore, setseeMore] = useState(false);
 
@@ -10,15 +10,12 @@ function ColumnItem({ props }) {
       {props.index % 2 == 0 ? (
         <div className="row py-3">
           <div className="col-lg-4">
-            <img
-              src={props.blogImg || props.ministryImg}
-              className="img-fluid"
-            />
+            <img src={props.blogImg || props?.image} className="img-fluid" />
           </div>
           <div className="col-lg-8 pt-3">
             <div className="d-flex flex-column ">
               <h1 className="color-primary">
-                {props.blogName || props.minsitryName}
+                {props?.blogName || props?.ministryName}
               </h1>
               <p
                 style={{
@@ -51,7 +48,7 @@ function ColumnItem({ props }) {
             <div className="d-flex flex-column ">
               <h1 className="color-primary">
                 {" "}
-                {props.blogName || props.minsitryName}
+                {props.blogName || props?.ministryName}
               </h1>
               <p
                 style={{ display: props.subHeading != "" ? "block" : "none" }}
@@ -65,6 +62,11 @@ function ColumnItem({ props }) {
                   : truncateString(props.description, 400)}
 
                 <span
+                  style={{
+                    display: checkDescriptionLength(props.description)
+                      ? ""
+                      : "none",
+                  }}
                   onClick={() => {
                     setseeMore(!seeMore);
                   }}
@@ -76,10 +78,7 @@ function ColumnItem({ props }) {
             </div>
           </div>
           <div className="col-lg-4">
-            <img
-              src={props.blogImg || props.ministryImg}
-              className="img-fluid"
-            />{" "}
+            <img src={props.blogImg || props?.image} className="img-fluid" />{" "}
           </div>
         </div>
       )}
