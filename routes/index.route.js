@@ -9,6 +9,7 @@ const sacramentRoutes = require("./sacramentRoutes");
 const contactUsRoutes = require("./contactUsRoutes");
 const contentRoutes = require("./contentRoutes");
 const blogRoutes = require("./blogRoutes");
+const adminRoutes = require("./adminRoutes");
 
 const router = express.Router();
 
@@ -44,6 +45,10 @@ const defaultRoutes = [
   {
     path: "/blog",
     route: blogRoutes,
+  },
+  {
+    path: "/admin",
+    route: adminRoutes,
   },
 ];
 

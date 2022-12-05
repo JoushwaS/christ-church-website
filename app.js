@@ -7,6 +7,7 @@ const cors = require("cors");
 const connect = require("./db/db");
 const mongoDbConfig = require("./config/mongodb.config");
 const dotenv = require("dotenv");
+require("./config/passport.config");
 
 dotenv.config();
 
@@ -32,9 +33,13 @@ if (process.env.NODE_ENV === "production") {
 } else {
   mongoDbConfig.MongoDBTest().catch((err) => console.log(err));
 }
+// app.use(sessionMiddleware);
 
-app.use(express.json());
+// app.use(session({ secret: 'godaddy420' })); // session secret
 app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.json());
+
 app.use("/api/v1/", v1Routes);
 /*
  * CORS policy configuration

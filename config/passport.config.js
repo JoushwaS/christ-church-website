@@ -2,6 +2,7 @@
  * Passport configuration file
  */
 const passport = require("passport");
+const LocalStrategy = require("passport-local");
 const { ExtractJwt, Strategy } = require("passport-jwt");
 const dotenv = require("dotenv");
 const User = require("../models/User");
@@ -11,7 +12,7 @@ dotenv.config();
 // const jwtPublicSecret = process.env.JWT_PUBLIC_SECRET.replace(/\\n/g, '\n');
 
 if (!process.env.JWT_KEY) {
-	console.error(404, "Please provide a JWT_KEY as global environment variable");
+  console.error(404, "Please provide a JWT_KEY as global environment variable");
 }
 const jwtKey = process.env.JWT_KEY;
 
@@ -22,42 +23,78 @@ const jwtKey = process.env.JWT_KEY;
  * @return {null}
  */
 const cookieExtractor = (req) => {
-	let token = null;
-	if (req && req.cookies.jwt) {
-		token = req.cookies.jwt;
-	}
+  let token = null;
+  if (req && req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
 
-	return token;
+  return token;
 };
 
 const options = {
-	secretOrKey: jwtKey,
-	passReqToCallback: true,
+  secretOrKey: jwtKey,
+  passReqToCallback: true,
 };
 
 options.jwtFromRequest = ExtractJwt.fromExtractors([
-	ExtractJwt.fromAuthHeaderAsBearerToken(),
-	(req) => cookieExtractor(req),
+  ExtractJwt.fromAuthHeaderAsBearerToken(),
+  (req) => cookieExtractor(req),
 ]);
 
 passport.use(
-	new Strategy(options, (req, jwtPayload, done) => {
-		User.findOne({ _id: jwtPayload.id })
-			.then((user) => {
-				if (user) {
-					// eslint-disable-next-line no-param-reassign
-					delete user.password;
-					done(null, user);
-				} else {
-					done(null, false);
-				}
-			})
-			.catch((err) => {
-				if (err) {
-					return done(err, false);
-				}
-			});
-	})
+  new Strategy(options, (req, jwtPayload, done) => {
+    User.findOne({ _id: jwtPayload.id })
+      .then((user) => {
+        if (user) {
+          // eslint-disable-next-line no-param-reassign
+          delete user.password;
+          done(null, user);
+        } else {
+          done(null, false);
+        }
+      })
+      .catch((err) => {
+        if (err) {
+          return done(err, false);
+        }
+      });
+  })
+);
+// passport.use(
+//   new LocalStrategy(options, (req, jwtPayload, done) => {
+//     User.findOne({ _id: jwtPayload.id })
+//       .then((user) => {
+//         if (user) {
+//           // eslint-disable-next-line no-param-reassign
+//           delete user.password;
+//           done(null, user);
+//         } else {
+//           done(null, false);
+//         }
+//       })
+//       .catch((err) => {
+//         if (err) {
+//           return done(err, false);
+//         }
+//       });
+//   })
+// );
+
+passport.use(
+  new LocalStrategy(function (username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false);
+      }
+      if (!user.verifyPassword(password)) {
+        return done(null, false);
+      }
+      return done(null, user);
+    });
+  })
 );
 
 module.exports = passport;
