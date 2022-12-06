@@ -27,12 +27,12 @@ app.use(function (req, res, next) {
   );
   next();
 });
-console.log("process.env.NODE_ENV", process.env.NODE_ENV);
-if (process.env.NODE_ENV === "production") {
+// console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+// if (process.env.NODE_ENV === "production") {
   mongoDbConfig.MongoDB().catch((err) => console.log(err));
-} else {
-  mongoDbConfig.MongoDBTest().catch((err) => console.log(err));
-}
+// } else {
+//   mongoDbConfig.MongoDBTest().catch((err) => console.log(err));
+// }
 // app.use(sessionMiddleware);
 
 // app.use(session({ secret: 'godaddy420' })); // session secret
