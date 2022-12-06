@@ -42,13 +42,12 @@ const ApiRoutes = {
   CREATE_BLOG: "blog/create",
   UPDATE_BLOG: "blog/update/",
   DELETE_BLOG: "blog/delete/",
-  //
+  // CONTACT REQUEST
   SEND_CONTACT_US_REQUEST: "contact-us/create-contact-request",
   GET_ALL_CONTACT_REQUESTS: "contact-us/get-all-contact-requests",
   GET_CONTACT_REQUEST: "contact-us/get-contact-request/",
-
   DELETE_CONTACT_REQUEST: "contact-us/delete-contact-us/",
-
+  // EXPLORE INFO
   GET_EXPLORE_INFO_ALL: "explore-Church-info/get-all",
 
   GET_EXPLORE_INFO: "explore-Church-info/get/",

@@ -1,4 +1,4 @@
-import { GET, POST } from "../../apis/requests";
+import { GET, POST, PUT, DELETE } from "../../apis/requests";
 import ApiRoutes from "../../apis/ApiRoutes";
 import ActionTypes from "../constant";
 import { toast } from "react-toastify";
