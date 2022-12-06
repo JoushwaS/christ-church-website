@@ -56,6 +56,7 @@ const defaultRoutes = [
     route: exploreChurchRoutes,
   },
 ];
+// pushing for deployment
 
 _.forEach(defaultRoutes, (route) => {
   router.use(route.path, route.route);
