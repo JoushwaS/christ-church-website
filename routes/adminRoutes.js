@@ -8,7 +8,7 @@ const adminController = require("../controllers/adminController");
 const { createUser, adminLogin } = adminController;
 const router = express.Router();
 const { authenticate } = authentication;
-
+// 
 router.post(
   "/admin-login",
 
