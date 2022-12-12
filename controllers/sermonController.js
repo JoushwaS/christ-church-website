@@ -27,15 +27,17 @@ module.exports = {
         console.log("audioPath", audioPath);
         newSermon.audioUrl = audioPath;
       }
+      if (req.files["thumbnail"]) {
+        const imageUrl = await cloudinaryUpload(
+          req.files["thumbnail"][0]?.path
+        );
 
-      const imageUrl = await cloudinaryUpload(req.files["thumbnail"][0]?.path);
+        console.log("imageUrl>>", imageUrl);
 
-      console.log("imageUrl>>", imageUrl);
-
-      if (imageUrl) {
-        newSermon.thumbnail = imageUrl;
+        if (imageUrl) {
+          newSermon.thumbnail = imageUrl;
+        }
       }
-
       newSermon.sermonName = sermonName;
       newSermon.description = description;
       newSermon.sermonType = sermonType;
@@ -64,25 +66,31 @@ module.exports = {
   updateSermon: async (req, res) => {
     try {
       let data = { ...req.body };
+
+      console.log("files", req.files);
+
+      // return;
       Object.keys(data).forEach(
         (k) => data[k] == null || (data[k] == "" && delete data[k])
       );
       console.log("updated data semon", data);
+      console.log("sermonId", req.params.sermonId);
 
-      if (data.sermonType == "video") {
-        data.videoUrl = videoUrl;
-      } else if (data.sermonType == "audio") {
+      if (data.sermonType == "audio") {
         const audioPath = await cloudinaryUpload(req.files["audio"][0]?.path);
         console.log("audioPath", audioPath);
         data.audioUrl = audioPath;
       }
+      if (req.files["thumbnail"]) {
+        const imageUrl = await cloudinaryUpload(
+          req.files["thumbnail"][0]?.path
+        );
 
-      const imageUrl = await cloudinaryUpload(req.files["thumbnail"][0]?.path);
+        console.log("imageUrl>>", imageUrl);
 
-      console.log("imageUrl>>", imageUrl);
-
-      if (imageUrl) {
-        data.thumbnail = imageUrl;
+        if (imageUrl) {
+          data.thumbnail = imageUrl;
+        }
       }
 
       const sermon = await Sermon.findOneAndUpdate(
@@ -92,7 +100,7 @@ module.exports = {
           new: true,
         }
       );
-
+      console.log("update sermon repons", sermon);
       return res.status(200).json({
         status: 1,
         message: "Sermon Updated Successfully",

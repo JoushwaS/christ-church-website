@@ -7,6 +7,7 @@ const cors = require("cors");
 const connect = require("./db/db");
 const mongoDbConfig = require("./config/mongodb.config");
 const dotenv = require("dotenv");
+const fileupload = require("express-fileupload");
 require("./config/passport.config");
 
 dotenv.config();
@@ -19,17 +20,26 @@ const PORT = process.env.PORT || 8000;
  */
 // connect();
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
+const corsOptions = {
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+};
+app.use(cors(corsOptions));
+
+// app.use(fileupload());
 // console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 // if (process.env.NODE_ENV === "production") {
-  mongoDbConfig.MongoDB().catch((err) => console.log(err));
+mongoDbConfig.MongoDB().catch((err) => console.log(err));
 // } else {
 //   mongoDbConfig.MongoDBTest().catch((err) => console.log(err));
 // }
@@ -44,14 +54,6 @@ app.use("/api/v1/", v1Routes);
 /*
  * CORS policy configuration
  */
-
-const corsOptions = {
-  origin: "*",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-};
-app.use(cors(corsOptions));
 
 app.use("/uploads", express.static("uploads"));
 
