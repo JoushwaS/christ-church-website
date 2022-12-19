@@ -77,12 +77,11 @@ module.exports = {
       console.log("updated data semon", data);
 
       if (req.file) {
-        // const audioPath = await cloudinaryUpload(req.file?.path);
-        const imageUrl = await cloudinaryUpload(
-          req.files["thumbnail"][0]?.path
-        );
+        const imageUrl = await cloudinaryUpload(req.file.path);
 
-        data.image = imageUrl;
+        if (imageUrl) {
+          data.image = imageUrl;
+        }
       }
 
       const blog = await Blog.findOneAndUpdate(
