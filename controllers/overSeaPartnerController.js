@@ -120,4 +120,24 @@ module.exports = {
       });
     }
   },
+  getOverSeaPartner: async (req, res) => {
+    try {
+      const overseapartner = await OverSeaPartner.findOne({
+        _id: req.params.overseapartnerId,
+      });
+      // console.log(OverSeaPartners);
+      res.status(200).json({
+        status: 1,
+        message: "Over Sea Partner Fetched  Successfully",
+        data: { overseapartner },
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        status: 0,
+        message: "Fetch Over Sea Partner  Failed!",
+        error: { error },
+      });
+    }
+  },
 };

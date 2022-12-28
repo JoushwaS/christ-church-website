@@ -8,6 +8,7 @@ const {
   updateOverSeaPartner,
   deleteOverSeaPartner,
   getAllOverSeaPartners,
+  getOverSeaPartner,
 } = overSeaPartnerController;
 const { multerDiskUpload } = require("../middlewares/upload.middleware");
 
@@ -25,6 +26,7 @@ router.put(
   catchAsync(updateOverSeaPartner)
 );
 router.get("/get-all-partners", catchAsync(getAllOverSeaPartners));
+router.get("/get-partner/:overseapartnerId", catchAsync(getOverSeaPartner));
 router.delete(
   "/delete-partner/:overseapartnerId",
   catchAsync(deleteOverSeaPartner)

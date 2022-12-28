@@ -117,4 +117,22 @@ module.exports = {
       });
     }
   },
+  getMinistry: async (req, res) => {
+    try {
+      const ministry = await Ministry.findOne({ _id: req.params.ministryId });
+      // console.log(Ministrys);
+      return res.status(200).json({
+        status: 1,
+        message: "Ministry Fetched  Successfully",
+        data: { ministry },
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({
+        status: 0,
+        message: "Fetch Ministry  Failed!",
+        error: { error },
+      });
+    }
+  },
 };
