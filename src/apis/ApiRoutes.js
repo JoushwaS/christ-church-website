@@ -29,10 +29,12 @@ const ApiRoutes = {
   // OVER SEA PARTNERS
   CREATE_OVERSEAPARTNER: "over-sea-partner/create-partner",
   GET_OVERSEAPARTNERS: "over-sea-partner/get-all-partners",
+  GET_OVERSEAPARTNER: "over-sea-partner/get-partner/",
   UPDATE_OVERSEAPARTNER: "over-sea-partner/update-partner/",
   DELETE_OVERSEAPARTNER: "over-sea-partner/delete-partner/",
   // MINISTERIES
   GET_MINISTERIES: "ministry/get-all-ministeries",
+  GET_MINISTERY: "ministry/get-ministery/",
   CREATE_MINISTERIES: "ministry/create-ministry",
   UPDATE_MINISTERIES: "ministry/update-ministry/",
   DELETE_MINISTERIES: "ministry/delete-ministry/",

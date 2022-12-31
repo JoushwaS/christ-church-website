@@ -1,98 +1,144 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Placeholder } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import { FaBlog } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { fetchBlogs, deleteBlog, actions } from "../../../app/blogs";
+import { truncateString } from "../../../utils/helper";
 
+import { useNavigate, useParams } from "react-router-dom";
+import { BiAddToQueue } from "react-icons/bi";
+
+import { fetchBlogs, deleteBlog, actions } from "../../../app/blogs";
+import {
+  GET_BLOGS_ACTION,
+  GET_BLOG_ACTION,
+  DELETE_BLOG_ACTION,
+} from "../../../redux/actions/actions";
 export default function Blogs(props) {
   const dispatch = useDispatch();
 
   const token = localStorage.getItem("token");
 
-  const { blogs } = useSelector((state) => state.blogs);
+  const navigate = useNavigate();
+  const [loading, setloading] = useState(true);
+
+  const { sermons, blogs } = useSelector((state) => state.reducers);
   const [show, setShow] = useState(false);
   const [blogId, setBlogId] = useState(null);
+  const [focus, setfocus] = useState("all");
 
+  const handleFilter = (value) => {
+    setfocus(value);
+  };
+
+  console.log("blogs", blogs);
   useEffect(() => {
-    dispatch(fetchBlogs(token));
-  }, [dispatch, token]);
-
+    dispatch(GET_BLOGS_ACTION());
+  }, [token]);
+  useEffect(() => {
+    if (blogs?.length != 0) {
+      setloading(false);
+    }
+  }, [blogs]);
   return (
     <>
-      <div className="container-fluid blog">
-        <div className="d-flex bd-highlight">
-          <div className="flex-grow-1 bd-highlight">
-            <h1>Recent Blog</h1>
-          </div>
-          <div className="bd-highlight">
-            <button
-              className="btn pink_button"
-              onClick={(e) => {
-                e.preventDefault(props.setPage("create_blog"));
-              }}
-            >
-              <FaBlog /> Add New Blog
-            </button>
-          </div>
+      <div className="container-fluid users_info">
+        <div className="col-12 text-center">
+          <h2>Blogs List</h2>
         </div>
-        <div className="col-12 mt-3">
-          <div className="card p-3 blog_wrapper">
-            {blogs?.map((item, index) => {
-              return (
-                // <Link
-                //   to="/blog_details"
-                //   key={index}
-                //   onClick={(e) => {
-                //     e.preventDefault();
-                //     props.setPage("blog_details");
-                //   }}
-                // >
-                <div className="blog-card mt-3" key={item._id ? item._id : index}>
-                  <div className="meta">
-                    <div
-                      className="photo"
-                      style={{
-                        backgroundImage: `url(${item?.image})`,
-                      }}
-                    ></div>
-                  </div>
-                  <div className="description">
-                    <h1>{item?.title}</h1>
-                    <p>{item?.explanation}</p>
-                    <div className="d-flex mt-5" style={{ justifyContent: "flex-end" }}>
-                      <button
-                        className="btn btn-info text-white px-5 py-2"
-                        onClick={(e) => {
-                          dispatch(actions.setBlog(item));
-                          e.preventDefault(props.setPage("blog_details"));
-                        }}
-                      >
-                        View
-                      </button>
-                      <button
-                        className="btn btn-danger mx-2 px-5 py-2"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setBlogId(item._id);
-                          setShow(true);
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                // </Link>
-              );
-            })}
+        <div className="d-flex bd-highlight mt-5">
+          <div className="flex-grow-1 bd-highlight buttons_wrapper"></div>
+          <button
+            onClick={(e) => {
+              navigate("/blogs/create_blog");
+            }}
+            className="btn fs-5 bg-primary-color text-white"
+          >
+            {" "}
+            Add New
+            <BiAddToQueue />
+          </button>
+          <div className="bd-highlight filter_icon_wrapper"></div>
+        </div>
+        {/* TABLE  */}
+        <div className="table-container mt-3">
+          <table>
+            <thead>
+              <tr>
+                <th data-heading="Sno">Sno</th>
+                <th data-heading="Name">Blog Name</th>
+                <th data-heading="Email Address">Date Created</th>
 
-            {blogs?.length > 5 && (
-              <div className="d-flex justify-content-center mt-5">
-                <button className="btn pink_button">See More</button>
-              </div>
-            )}
-          </div>
+                <th data-heading="Status">Description</th>
+                <th data-heading="Actions" className="text-center">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading
+                ? [1, 2, 3, 4, 5, 6].map((item) => (
+                    <tr key={item}>
+                      <td>{item}</td>
+                      <td>
+                        <Placeholder xs={8} bg="secondary" />
+                      </td>
+                      <td>
+                        <Placeholder xs={8} bg="secondary" />
+                      </td>
+                      <td>
+                        <Placeholder xs={8} bg="secondary" />
+                      </td>
+                      <td>
+                        <Placeholder xs={8} bg="secondary" />
+                      </td>
+                      <td>
+                        <Placeholder xs={6} bg="secondary" />
+                      </td>
+                    </tr>
+                  ))
+                : blogs?.map((item, index) => {
+                    return (
+                      <tr key={item + index}>
+                        <td data-heading="Sno">{index + 1}</td>
+                        <td data-heading="Sermon Name">{item?.blogName}</td>
+
+                        <td data-heading="Created At">
+                          {new Date(item.createdAt).toLocaleDateString()}
+                        </td>
+                        <td data-heading="Sermon Type">
+                          {truncateString(item.description, 40)}
+                        </td>
+                        <td data-heading="Actions">
+                          <div className="d-flex justify-content-between">
+                            <button
+                              onClick={(e) => {
+                                dispatch(GET_BLOG_ACTION(item?._id));
+                                // e.preventDefault(props.setPage("sermon_details"));
+                                navigate("/blogs/blog_details/" + item?._id);
+                              }}
+                              className="btn btn-outline-primary px-4"
+                            >
+                              View
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                dispatch(
+                                  DELETE_BLOG_ACTION(item?._id, token, navigate)
+                                );
+                              }}
+                              className="btn btn-outline-danger px-4"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -108,12 +154,13 @@ export default function Blogs(props) {
           <button
             className="btn btn-danger"
             onClick={() => {
-              dispatch(
-                deleteBlog({
-                  token,
-                  blogId,
-                })
-              );
+              // dispatch(
+              //   DELETE_SERMON_ACTION(
+              //     item?._id,
+              //     token,
+              //     navigate
+              //   )
+              // );
               setShow(false);
             }}
           >

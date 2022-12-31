@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IMAGES } from "../../../constant/images";
-import { login } from "../../../app/auth";
+import { LOGIN } from "../../../redux/actions/authentication";
 
 const schema = yup
   .object({
@@ -19,8 +19,13 @@ const schema = yup
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const { error, loading } = useSelector((state) => state.auth);
+  const [user, setuser] = useState({
+    email: "",
+    password: "",
+  });
+  const { error, loading, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
   const [eye, setEye] = useState(false);
 
   const {
@@ -31,16 +36,25 @@ export default function Login() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data) => {
-    const { payload } = await dispatch(login(data));
-    if (payload.status) navigate("/");
+  const handleChange = (e) => {
+    setuser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(user);
+    dispatch(LOGIN(user, navigate));
+    if (isAuthenticated) {
+      navigate("/");
+    }
   };
 
   return (
     <>
       <div
         className="login"
-        style={{ backgroundImage: `url(${IMAGES.login_background})` }}
+        // style={{ backgroundImage: `url(${IMAGES.login_background})` }}
       >
         <img src={IMAGES.logo_icon} alt="logo" className="login-logo" />
         <div className="login-card">
@@ -48,7 +62,7 @@ export default function Login() {
             <h2>Log In</h2>
           </div>
           <div className="body px-4">
-            <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
+            <form className="mt-5" onSubmit={onSubmit}>
               {error && <div className="alert alert-danger">{error}</div>}
 
               <label>Email</label>
@@ -57,14 +71,18 @@ export default function Login() {
                   <FiMail />
                 </div>
                 <input
-                  {...register("email")}
+                  // {...register("email")}
                   type="email"
                   className="theme-input"
                   id="email"
+                  name="email"
+                  onChange={handleChange}
                   placeholder="Enter Your Email"
                 />
               </div>
-              {errors.email && <div className="error">{errors.email.message}</div>}
+              {errors.email && (
+                <div className="error">{errors.email.message}</div>
+              )}
 
               <label className="mt-3">Password</label>
               <div className="input_wrapper mt-2">
@@ -72,10 +90,12 @@ export default function Login() {
                   <FiLock />
                 </div>
                 <input
-                  {...register("password")}
+                  // {...register("password")}
                   type={eye ? "text" : "password"}
                   className="theme-input"
                   id="password"
+                  name="password"
+                  onChange={handleChange}
                   placeholder="Enter Your Password"
                 />
                 {/* <div className="icon">
@@ -86,13 +106,19 @@ export default function Login() {
                   )}
                 </div> */}
               </div>
-              {errors.password && <div className="error">{errors.password.message}</div>}
+              {errors.password && (
+                <div className="error">{errors.password.message}</div>
+              )}
               <div className="mt-2 col-md-12 d-flex forgot_password">
                 <p>Forgot Password ?</p>
               </div>
               <div className="mt-3">
                 <button className="login-btn" type="submit">
-                  {loading ? <Spinner animation="border" variant="primary" /> : "Login"}
+                  {loading ? (
+                    <Spinner animation="border" variant="primary" />
+                  ) : (
+                    "Login"
+                  )}
                 </button>
               </div>
             </form>

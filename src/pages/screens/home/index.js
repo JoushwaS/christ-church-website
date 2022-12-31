@@ -2,59 +2,72 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHome } from "../../../app/home";
 import { IMAGES } from "../../../constant/images";
-
+import {
+  GET_OVERSEAPARTNERS_LIST_ACTION,
+  GET_SERMONS_ACTION,
+  GET_BLOGS_ACTION,
+  GET_EVENTS_LIST_ACTION,
+  GET_SACRAMENTS_LIST_ACTION,
+  GET_MINISTERIES_LIST_ACTION,
+} from "../../../redux/actions/actions";
 export default function Home() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
 
-  const { loading, error, data } = useSelector((state) => state.home);
+  const { partners, sacraments, events, sermons, blogs, ministeries } =
+    useSelector((state) => state.reducers);
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchHome(token));
-  }, [dispatch, token]);
-
+    dispatch(GET_OVERSEAPARTNERS_LIST_ACTION());
+    dispatch(GET_SERMONS_ACTION());
+    dispatch(GET_BLOGS_ACTION());
+    dispatch(GET_MINISTERIES_LIST_ACTION());
+    dispatch(GET_SACRAMENTS_LIST_ACTION());
+    dispatch(GET_EVENTS_LIST_ACTION());
+  }, [token]);
   useEffect(() => {
-    if (data) {
+    if (partners && sacraments && events && sermons && blogs) {
       setCards([
         {
           icon: IMAGES.homeCardIcons[0],
-          title: "Registered Users",
-          value: data?.registered,
+          title: "Partners",
+          value: partners?.length,
+        },
+
+        {
+          icon: IMAGES.homeCardIcons[0],
+          title: "sacraments",
+          value: sacraments?.length,
         },
         {
-          icon: IMAGES.homeCardIcons[1],
-          title: "active Users",
-          value: data?.active,
+          icon: IMAGES.homeCardIcons[0],
+          title: "events",
+          value: events?.length,
         },
         {
-          icon: IMAGES.homeCardIcons[2],
-          title: "de-active users",
-          value: data?.inactive,
+          icon: IMAGES.homeCardIcons[0],
+          title: "sermons",
+          value: sermons?.length,
         },
         {
-          icon: IMAGES.homeCardIcons[3],
-          title: "expired Users",
-          value: data?.expired,
+          icon: IMAGES.homeCardIcons[0],
+          title: "sermons",
+          value: sermons?.length,
         },
         {
-          icon: IMAGES.homeCardIcons[4],
-          title: "block Users",
-          value: data?.blocked,
-        },
-        {
-          icon: IMAGES.homeCardIcons[5],
-          title: "deleted Users",
-          value: data?.deleted,
-        },
-        {
-          icon: IMAGES.homeCardIcons[6],
+          icon: IMAGES.homeCardIcons[0],
           title: "blogs",
-          value: data?.blogs,
+          value: blogs?.length,
+        },
+        {
+          icon: IMAGES.homeCardIcons[0],
+          title: "ministeries",
+          value: ministeries?.length,
         },
       ]);
     }
-  }, [data]);
+  }, [partners, sacraments, events, sermons, blogs]);
 
   const loadingCard = [
     {
@@ -107,7 +120,7 @@ export default function Home() {
         <div className="col-12 text-center">
           <h2>Dashboard</h2>
         </div>
-        {/* CARDS  */}
+
         <div className="row">
           {loading
             ? loadingCard.map((element, index) => {

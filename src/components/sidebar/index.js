@@ -7,6 +7,9 @@ import {
   FiUsers,
   FiMessageSquare,
 } from "react-icons/fi";
+import { FaHandshake, FaRegBuilding } from "react-icons/fa";
+// import { FcOrganization } from "react-icons/fc";
+import { BiBookContent } from "react-icons/bi";
 import { FaBlog, FaRegWindowClose } from "react-icons/fa";
 
 export default function SideBar(props) {
@@ -14,7 +17,11 @@ export default function SideBar(props) {
     <aside className={`sidebar ${props.toggle && "sidebar_show"}`}>
       <div className="sidebar__header">
         <div className="sidebar__header__icon">
-          <img src={IMAGES.logo} alt="logo" />
+          <img
+            style={{ maxWidth: "80%", height: "auto" }}
+            src={IMAGES.logoWhite}
+            alt="logo"
+          />
         </div>
       </div>
       <div className="sidebar__body">
@@ -28,17 +35,33 @@ export default function SideBar(props) {
                 <FiHome /> Home
               </li>
             </NavLink>
-            <NavLink to="/users" className={"item__link"}>
+            <NavLink to="/sermons" className={"item__link"}>
               <li>
-                <FiUser /> Users
+                <FiUser /> Sermons
               </li>
             </NavLink>
-            <NavLink to="/blog" className={"item__link"}>
+            <NavLink to="/ministeries" className={"item__link"}>
+              <li>
+                <FaRegBuilding style={{ color: "white !important" }} />{" "}
+                Ministeries
+              </li>
+            </NavLink>
+            <NavLink to="/blogs" className={"item__link"}>
               <li>
                 <FaBlog /> Blogs
               </li>
             </NavLink>
-            <NavLink to="/chat_rooms" className={"item__link"}>
+            <NavLink to="/content" className={"item__link"}>
+              <li>
+                <BiBookContent /> Website Content
+              </li>
+            </NavLink>
+            <NavLink to="/overseapartners" className={"item__link"}>
+              <li>
+                <FaHandshake /> OverSeas Partners
+              </li>
+            </NavLink>
+            {/* <NavLink to="/chat_rooms" className={"item__link"}>
               <li>
                 <FiUsers /> Chat Rooms
               </li>
@@ -52,11 +75,15 @@ export default function SideBar(props) {
               <li>
                 <FiMessageSquare /> Help Center Messages
               </li>
-            </NavLink>
-            <NavLink to="/close" className={"item__link d-sm-none"} onClick={(e)=>{
-              e.preventDefault()
-              props.setToggle(false)
-            }}>
+            </NavLink> */}
+            <NavLink
+              to="/close"
+              className={"item__link d-sm-none"}
+              onClick={(e) => {
+                e.preventDefault();
+                props.setToggle(false);
+              }}
+            >
               <li>
                 <FaRegWindowClose /> Close
               </li>

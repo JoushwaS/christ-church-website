@@ -6,9 +6,12 @@ const initial_state = {
   events: [],
   event: {},
   ministeries: [],
+  ministry: {},
   partners: [],
+  partner: {},
   sermons: [],
   sermon: {},
+
   exploreInfoList: [],
   exploreInfo: {},
   blogs: [],
@@ -23,6 +26,14 @@ const reducers = (state = initial_state, action) => {
         ...state,
         content: action.payload.data.content,
       };
+    case ActionTypes.UPDATE_CONTENT:
+      return {
+        ...state,
+      };
+    case ActionTypes.CREATE_CONTENT:
+      return {
+        ...state,
+      };
     case ActionTypes.GET_EVENTS_LIST:
       return {
         ...state,
@@ -33,17 +44,52 @@ const reducers = (state = initial_state, action) => {
         ...state,
         event: action.payload.data.event,
       };
+
+    case ActionTypes.UPDATE_EVENT:
+      return {
+        ...state,
+        event: action.payload.data.event,
+      };
+
     case ActionTypes.GET_SERMONS:
       return {
         ...state,
         sermons: action.payload.data.Sermons,
       };
     case ActionTypes.GET_SERMON:
-      console.log("sermon", action.payload.data);
+      // console.log("sermon", action.payload.data);
 
       return {
         ...state,
         sermon: action.payload.data.sermon,
+      };
+    case ActionTypes.UPDATE_SERMON:
+      // console.log("sermon", action.payload.data);
+
+      return {
+        ...state,
+        sermon: action.payload.data.sermon,
+      };
+    case ActionTypes.CREATE_SERMON:
+      console.log("sermon", action.payload.data);
+
+      return {
+        ...state,
+        // sermon: action.payload.data.sermon,
+      };
+    case ActionTypes.CREATE_BLOGS:
+      console.log("blog", action.payload.data);
+
+      return {
+        ...state,
+        // sermon: action.payload.data.sermon,
+      };
+    case ActionTypes.DELETE_BLOG:
+      console.log("blog", action.payload.data);
+
+      return {
+        ...state,
+        // sermon: action.payload.data.sermon,
       };
 
     case ActionTypes.GET_SERMONS_TYPE:
@@ -61,10 +107,54 @@ const reducers = (state = initial_state, action) => {
         ...state,
         partners: action.payload.data.overseapartners,
       };
+    case ActionTypes.GET_OVERSEAPARTNER:
+      return {
+        ...state,
+        partner: action.payload.data.overseapartner,
+      };
+    case ActionTypes.UPDATE_OVERSEAPARTNER:
+      return {
+        ...state,
+        partner: action.payload.data.overseapartner,
+      };
+    case ActionTypes.CREATE_OVERSEAPARTNER:
+      return {
+        ...state,
+        // partner: action.payload.data.overseapartner,
+      };
+    case ActionTypes.DELETE_OVERSEAPARTNER:
+      return {
+        ...state,
+        // partner: action.payload.data.overseapartner,
+      };
+
     case ActionTypes.GET_MINISTERIES:
       return {
         ...state,
         ministeries: action.payload.data.ministries,
+      };
+    case ActionTypes.GET_MINISTERY:
+      return {
+        ...state,
+        ministry: action.payload.data.ministry,
+      };
+    case ActionTypes.UPDATE_MINISTRY:
+      return {
+        ...state,
+        ministry: action.payload.data.ministry,
+      };
+    case ActionTypes.DELETE_MINISTRY:
+      console.log("ministry delete reducer", action.payload.data);
+
+      return {
+        ...state,
+      };
+
+    case ActionTypes.CREATE_MINISTERIES:
+      console.log("ministry create reducer", action.payload.data);
+
+      return {
+        ...state,
       };
 
     case ActionTypes.GET_EVENTS_LIST:

@@ -1,7 +1,8 @@
 const IMAGES = {
-  logo: require("../assets/images/logo.png"),
-  logo_icon: require('../assets/images/logo-icon.png'),
-  login_background: require('../assets/images/background.png'),
+  logo: require("../assets/images/logoNew.png"),
+  logoWhite: require("../assets/images/logoWhite.png"),
+  logo_icon: require("../assets/images/logoNew.png"),
+  login_background: require("../assets/images/background.png"),
   homeCardIcons: [
     require("../assets/images/homeIcon1.png"),
     require("../assets/images/homeIcon2.png"),
